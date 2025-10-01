@@ -147,7 +147,7 @@ const CardNav: React.FC<CardNavProps> = ({
     };
   }, [ease, items]);
 
-  // obsługa resize (dopasowanie height)
+
   useLayoutEffect(() => {
     const handleResize = () => {
       if (!tlRef.current) return;
@@ -196,7 +196,7 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   return (
-    <div className={`card-nav-container fixed w-[90%] max-w-[800px] z-[99] top-10 left-1/2 -translate-x-1/2 ${className}`}>
+    <div className={`card-nav-container fixed w-[90%] max-w-[800px] z-[99] top-6 left-1/2 -translate-x-1/2 ${className}`}>
       <nav
         ref={navRef}
         className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height,transform]`}
