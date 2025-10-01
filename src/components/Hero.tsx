@@ -11,8 +11,7 @@ const Hero = () => {
           
           {/* 🔥 Efekt shaderowy – jedna wstęga na środku */}
           <div className="absolute inset-0">
-            <Threads
-              color={[1, 1, 1]}       
+            <Threads   
               amplitude={0.8}         
               distance={0}            
               enableMouseInteraction={false}

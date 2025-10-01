@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 
-interface ThreadsProps extends React.HTMLAttributes<HTMLDivElement> {
-  color?: [number, number, number];
+interface ThreadsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
+  threadColor?: [number, number, number]; 
   amplitude?: number;
   distance?: number;
   enableMouseInteraction?: boolean;
 }
-
 
 const vertexShader = `
 attribute vec2 position;
@@ -35,6 +34,7 @@ const int u_line_count = 40;
 const float u_line_width = 7.0;
 const float u_line_blur = 10.0;
 
+// noise fn
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
     vec4 Pf_Pfmin1 = P.xyxy - vec4(Pi, Pi + 1.0);
@@ -127,7 +127,7 @@ void main() {
 `;
 
 const Threads: React.FC<ThreadsProps> = ({
-  color = [1, 1, 1],
+  threadColor = [1, 1, 1],   // ✅ poprawna nazwa
   amplitude = 1,
   distance = 0,
   enableMouseInteraction = false,
@@ -135,7 +135,6 @@ const Threads: React.FC<ThreadsProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef<number | null>(null);
-
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -157,7 +156,7 @@ const Threads: React.FC<ThreadsProps> = ({
         iResolution: {
           value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
         },
-        uColor: { value: new Color(...color) },
+        uColor: { value: new Color(...threadColor) }, // ✅ używamy threadColor
         uAmplitude: { value: amplitude },
         uDistance: { value: distance },
         uMouse: { value: new Float32Array([0.5, 0.5]) }
@@ -176,22 +175,21 @@ const Threads: React.FC<ThreadsProps> = ({
     window.addEventListener('resize', resize);
     resize();
 
-    const currentMouse = [0.5, 0.5];
-    let targetMouse = [0.5, 0.5];
+    const currentMouse = new Float32Array([0.5, 0.5]);
+    const targetMouse = new Float32Array([0.5, 0.5]);
+
 
     function handleMouseMove(e: MouseEvent) {
       const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height;
-      targetMouse = [x, y];
+      targetMouse[0] = (e.clientX - rect.left) / rect.width;
+      targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
     }
+    
     function handleMouseLeave() {
-      targetMouse = [0.5, 0.5];
+      targetMouse[0] = 0.5;
+      targetMouse[1] = 0.5;
     }
-    if (enableMouseInteraction) {
-      container.addEventListener('mousemove', handleMouseMove);
-      container.addEventListener('mouseleave', handleMouseLeave);
-    }
+    
 
     function update(t: number) {
       if (enableMouseInteraction) {
@@ -214,7 +212,6 @@ const Threads: React.FC<ThreadsProps> = ({
     return () => {
       if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
       window.removeEventListener('resize', resize);
-
       if (enableMouseInteraction) {
         container.removeEventListener('mousemove', handleMouseMove);
         container.removeEventListener('mouseleave', handleMouseLeave);
@@ -222,7 +219,7 @@ const Threads: React.FC<ThreadsProps> = ({
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [color, amplitude, distance, enableMouseInteraction]);
+  }, [threadColor, amplitude, distance, enableMouseInteraction]); // ✅ zależności
 
   return <div ref={containerRef} className="w-full h-full relative" {...rest} />;
 };
