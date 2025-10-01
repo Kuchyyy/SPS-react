@@ -4,7 +4,6 @@ import Threads from './Threads'
 const Hero = () => {
   useEffect(() => {
     const setVh = () => {
-      // ustawiamy 96% aktualnej wysokości okna jako zmienną CSS
       const vh = window.innerHeight * 0.96
       document.documentElement.style.setProperty('--hero-height', `${vh}px`)
     }
@@ -19,9 +18,9 @@ const Hero = () => {
       <div className="max-w-[1440px] mx-auto w-[96%] h-full flex flex-col justify-center mt-4">
         <div
           className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-[#111827]"
-          style={{ height: 'var(--hero-height)' }} // <-- zamiast h-[96vh]
+          style={{ height: 'var(--hero-height)' }} 
         >
-          {/* efekt shaderowy */}
+         
           <div className="absolute inset-0">
             <Threads
               amplitude={0.8}
@@ -31,7 +30,7 @@ const Hero = () => {
             />
           </div>
 
-          {/* zawartość */}
+         
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="text-center text-white px-3 pt-30">
               <h1 className="text-3xl md:text-6xl font-bold leading-tight font-satoshi">
