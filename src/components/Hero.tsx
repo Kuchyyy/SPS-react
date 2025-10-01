@@ -1,26 +1,14 @@
-import { useEffect } from 'react'
 import Threads from './Threads'
 
 const Hero = () => {
-  useEffect(() => {
-    const setVh = () => {
-      const vh = window.innerHeight * 0.96
-      document.documentElement.style.setProperty('--hero-height', `${vh}px`)
-    }
-
-    setVh()
-    window.addEventListener('resize', setVh)
-    return () => window.removeEventListener('resize', setVh)
-  }, [])
-
   return (
     <section className="w-screen bg-stone-100">
       <div className="max-w-[1440px] mx-auto w-[96%] h-full flex flex-col justify-center mt-4">
-        <div
-          className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-[#111827]"
-          style={{ height: 'var(--hero-height)' }} 
-        >
-         
+        
+        {/* Karta hero */}
+        <div className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-[#111827] h-[96svh]">
+          
+          {/* 🔥 Efekt shaderowy w tle */}
           <div className="absolute inset-0">
             <Threads
               amplitude={0.8}
@@ -30,7 +18,7 @@ const Hero = () => {
             />
           </div>
 
-         
+          {/* Zawartość */}
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="text-center text-white px-3 pt-30">
               <h1 className="text-3xl md:text-6xl font-bold leading-tight font-satoshi">
