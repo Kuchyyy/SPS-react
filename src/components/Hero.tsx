@@ -1,7 +1,29 @@
 import Threads from './Threads'
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 const Hero = () => {
+  const logos = [
+    { src: "https://akson.com.pl/wp-content/uploads/2022/12/siemens-logo-dax.png", alt: "Siemens logo" },
+    { src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bosch_logo.png", alt: "Bosch logo" },
+    { src: "https://www.wesco.com/content/dam/wesco/assets/logos/brands/Eaton-logo_300x175.png", alt: "Eaton logo" },
+    { src: "https://www.signify.com/content/dam/signify/master/homepage/logo-philips.png", alt: "Philips logo" },
+    { src: "https://filtrdodomu.pl/userdata/public/producers/10.jpg", alt: "Partner 6" },
+    { src: "https://rodavigo.net/datos/logos-marcas-png/ceag.png", alt: "CEAG logo" },
+    { src: "https://www.securedbydesign.com/images/Aritech.png", alt: "Aritech logo" },
+    // duplikaty, żeby efekt był ciągły
+    { src: "https://akson.com.pl/wp-content/uploads/2022/12/siemens-logo-dax.png", alt: "Siemens logo" },
+    { src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bosch_logo.png", alt: "Bosch logo" },
+    { src: "https://www.wesco.com/content/dam/wesco/assets/logos/brands/Eaton-logo_300x175.png", alt: "Eaton logo" },
+    { src: "https://www.signify.com/content/dam/signify/master/homepage/logo-philips.png", alt: "Philips logo" },
+    { src: "https://filtrdodomu.pl/userdata/public/producers/10.jpg", alt: "Partner 6" },
+    { src: "https://rodavigo.net/datos/logos-marcas-png/ceag.png", alt: "CEAG logo" },
+    { src: "https://www.securedbydesign.com/images/Aritech.png", alt: "Aritech logo" },
+  ];
+
+
   return (
+
+
     <section className="w-screen bg-stone-100">
       <div className="max-w-[1440px] mx-auto w-[96%] h-full flex flex-col justify-center mt-4">
         
@@ -29,15 +51,30 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row mt-10">
-              <div className="flex-1 flex items-end justify-center">
-                <img
-                  src="/photos/mac.png"
-                  alt="Laptop z projektem SPS"
-                  className="w-full max-w-xl object-contain"
-                />
-              </div>
-            </div>
+             <section className="py-12 bg-transparent">
+                  <div className="w-[96%] mx-auto">
+            
+                    <div className="relative w-full h-[180px] overflow-hidden touch-pan-x">
+                      <div className="absolute inset-0 mask-[linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]">
+                        <InfiniteSlider gap={24} reverse className="w-full h-full" duration={50}>
+                          {logos.map((logo, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center justify-center w-[160px] h-[160px] bg-stone-100 rounded-lg shadow-md"
+                            >
+                              <img
+                                src={logo.src}
+                                alt={logo.alt}
+                                draggable="false"
+                                className="max-w-[120px] max-h-[120px] object-contain  transition duration-300"
+                              />
+                            </div>
+                          ))}
+                        </InfiniteSlider>
+                      </div>
+                    </div>
+                  </div>
+                </section>
           </div>
         </div>
       </div>
