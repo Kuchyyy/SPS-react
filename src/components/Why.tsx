@@ -72,13 +72,13 @@ const Why = () => {
   return (
     <section className="w-screen bg-stone-100 py-20">
       <div className="max-w-[1440px] mx-auto w-[90%] flex flex-col lg:flex-row gap-12">
-        {/* 🔹 Sticky intro */}
+
         <div className="lg:w-1/2 self-start sticky lg:top-24 text-center lg:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md">
           <Star className="w-4 h-4" />
             WYBIERZ NAS
           </div>
-          <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900">
+          <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 uppercase">
             Dlaczego warto?
           </h1>
           <p className="mt-4 text-gray-600 text-lg font-satoshi-medium">
@@ -87,7 +87,7 @@ const Why = () => {
           </p>
         </div>
 
-        {/* 🔹 Kafelki */}
+
         <div className="lg:w-1/2 flex flex-col gap-6">
           {reasons.map((item, index) => (
             <div
@@ -95,14 +95,14 @@ const Why = () => {
               ref={(el) => {
                 refs.current[index] = el;}}
                 style={{ transitionDelay: `${index * 200}ms` }}
-              className={`relative bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition h-50 sm:h-48 flex flex-col justify-between overflow-hidden transform 
+              className={`group relative bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition h-54 sm:h-48 flex flex-col justify-between overflow-hidden transform 
                 ${
                   visibleCards[index]
                     ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
                     : "opacity-0 translate-y-10"
                 }`}
             >
-              {/* Ikona + Tytuł */}
+  
               <div className="flex flex-col items-start gap-3 z-10">
                 {item.icon}
                 <h2 className="text-2xl font-robert-medium uppercase text-gray-900">
@@ -110,16 +110,17 @@ const Why = () => {
                 </h2>
               </div>
 
-              {/* Opis */}
+  
               <p className="text-gray-600 text-base mt-2 sm:pr-30 z-10">{item.desc}</p>
 
-              {/* Numer */}
+
               <div
                 className="
                   absolute 
                   
                   bottom-[-60px] right-[-20px] top-auto text-[16rem]
                   font-extrabold text-gray-200 leading-none select-none z-0
+                  group-hover:scale-110 transition-transform duration-300 pointer-events-none
                 "
               >
                 {item.number}

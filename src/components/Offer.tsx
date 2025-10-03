@@ -48,13 +48,13 @@ const Offer = () => {
   return (
     <section id="oferta" className="py-20 bg-stone-100">
       <div className="max-w-[1440px] w-[90%] mx-auto">
-        {/* 🔹 WSTĘP */}
+  
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md">
             <Star className="w-4 h-4" />
             OFERTA
           </div>
-          <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900">
+          <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 uppercase">
             Działamy dla Ciebie
           </h1>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg font-satoshi-medium">
@@ -64,9 +64,9 @@ const Offer = () => {
           </p>
         </div>
 
-        {/* 🔹 KONTENT */}
+
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-6 items-stretch">
-          {/* Zdjęcie – na mobile pierwsze, na desktopie po prawej */}
+    
           <div className="flex justify-center items-center order-1 lg:order-2 col-span-3 h-[300px] lg:h-[484px]">
             <img
               key={tabs[active].img}
@@ -76,7 +76,7 @@ const Offer = () => {
             />
           </div>
 
-          {/* Kafelki – na mobile pod zdjęciem, na desktopie po lewej */}
+    
           <div className="flex flex-col gap-4 order-2 lg:order-1 col-span-2 w-full h-[420px] sm:h-[500px] lg:h-[484px] mt-3 lg:mt-0">
             {tabs.map((tab, index) => (
               <div
@@ -88,7 +88,7 @@ const Offer = () => {
                     : "bg-gray-50 hover:bg-white"
                 }`}
               >
-                {/* Nagłówek */}
+                
                 <div className="flex items-start justify-between">
                   <div className="flex sm:flex-col flex-row">
                     {tab.icon}
@@ -103,7 +103,6 @@ const Offer = () => {
                   />
                 </div>
 
-                {/* Opis */}
                 <div
                   className={`absolute left-0 right-0 bottom-0 p-5 py-3 sm:py-5 text-gray-600 text-sm transition-all duration-500 transform ${
                     active === index
