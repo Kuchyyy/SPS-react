@@ -51,12 +51,12 @@ const Hero = () => {
               </p>
             </div>
 
-             <section className="py-12 bg-transparent">
+             <section className="py-8 bg-transparent">
                   <div className="w-[96%] mx-auto">
             
                     <div className="relative w-full h-[180px] overflow-hidden touch-pan-x">
                       <div className="absolute inset-0 mask-[linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]">
-                        <InfiniteSlider gap={24} reverse className="w-full h-full" duration={50}>
+                        <InfiniteSlider gap={24} reverse className="w-full h-full flex items-center" duration={50}>
                           {logos.map((logo, index) => (
                             <div
                               key={index}

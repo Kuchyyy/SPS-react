@@ -77,7 +77,7 @@ const Offer = () => {
           </div>
 
           {/* Kafelki – na mobile pod zdjęciem, na desktopie po lewej */}
-          <div className="flex flex-col gap-4 order-2 lg:order-1 col-span-2 w-full h-[500px] lg:h-[484px] mt-3 lg:mt-0">
+          <div className="flex flex-col gap-4 order-2 lg:order-1 col-span-2 w-full h-[420px] sm:h-[500px] lg:h-[484px] mt-3 lg:mt-0">
             {tabs.map((tab, index) => (
               <div
                 key={index}
@@ -90,9 +90,9 @@ const Offer = () => {
               >
                 {/* Nagłówek */}
                 <div className="flex items-start justify-between">
-                  <div className="flex flex-col">
+                  <div className="flex sm:flex-col flex-row">
                     {tab.icon}
-                    <h3 className="text-xl font-robert-medium mt-2 uppercase">
+                    <h3 className="text-2xl font-robert-medium mt-1 uppercase px-4 sm:px-0">
                       {tab.title}
                     </h3>
                   </div>
@@ -105,7 +105,7 @@ const Offer = () => {
 
                 {/* Opis */}
                 <div
-                  className={`absolute left-0 right-0 bottom-0 p-5 py-2 sm:py-5 text-gray-600 text-sm transition-all duration-500 transform ${
+                  className={`absolute left-0 right-0 bottom-0 p-5 py-3 sm:py-5 text-gray-600 text-sm transition-all duration-500 transform ${
                     active === index
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-4 pointer-events-none"
