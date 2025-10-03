@@ -61,6 +61,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+body {
+  @apply
+  bg-stone-100;
+}
+
 @theme {
   --font-satoshi: 'satoshi', sans-serif;
   --font-satoshi-medium: 'satoshi-medium', sans-serif;
@@ -107,6 +112,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
 }
 
 :root {
@@ -185,4 +191,23 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer utilities{
+
+  @keyframes pulse-ripple {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.15);
+      opacity: 0.4;
+    }
+  }
+  
+  .animate-pulse-ripple {
+    animation: pulse-ripple 3s infinite ease-in-out;
+  }
+
 }

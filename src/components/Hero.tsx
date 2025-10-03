@@ -10,7 +10,7 @@ const Hero = () => {
     { src: "https://filtrdodomu.pl/userdata/public/producers/10.jpg", alt: "Partner 6" },
     { src: "https://rodavigo.net/datos/logos-marcas-png/ceag.png", alt: "CEAG logo" },
     { src: "https://www.securedbydesign.com/images/Aritech.png", alt: "Aritech logo" },
-    // duplikaty, żeby efekt był ciągły
+
     { src: "https://akson.com.pl/wp-content/uploads/2022/12/siemens-logo-dax.png", alt: "Siemens logo" },
     { src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bosch_logo.png", alt: "Bosch logo" },
     { src: "https://www.wesco.com/content/dam/wesco/assets/logos/brands/Eaton-logo_300x175.png", alt: "Eaton logo" },
@@ -25,12 +25,12 @@ const Hero = () => {
 
 
     <section className="w-screen bg-stone-100">
-      <div className="max-w-[1440px] mx-auto w-[96%] h-full flex flex-col justify-center mt-4">
+      <div className="max-w-[1440px] mx-auto w-[90%] h-full flex flex-col justify-center mt-4">
         
-        {/* Karta hero */}
+
         <div className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-[#111827] h-[96svh]">
           
-          {/* 🔥 Efekt shaderowy w tle */}
+
           <div className="absolute inset-0">
             <Threads
               amplitude={0.8}
@@ -40,7 +40,7 @@ const Hero = () => {
             />
           </div>
 
-          {/* Zawartość */}
+
           <div className="relative z-10 flex flex-col justify-between h-full">
             <div className="text-center text-white px-3 pt-30">
               <h1 className="text-3xl md:text-6xl font-bold leading-tight font-satoshi">

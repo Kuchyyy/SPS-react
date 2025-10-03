@@ -73,8 +73,8 @@ const Why = () => {
     <section className="w-screen bg-stone-100 py-20">
       <div className="max-w-[1440px] mx-auto w-[90%] flex flex-col lg:flex-row gap-12">
 
-        <div className="lg:w-1/2 self-start sticky lg:top-24 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-1 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md">
+        <div className="lg:w-1/2 self-start sticky lg:top-24 text-center lg:text-left ml-0 sm:ml-2">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md">
           <Star className="w-4 h-4" />
             WYBIERZ NAS
           </div>
