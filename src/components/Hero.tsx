@@ -28,7 +28,7 @@ const Hero = () => {
       <div className="max-w-[1440px] mx-auto w-[90%] h-full flex flex-col justify-center mt-4">
         
 
-        <div className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-[#111827] h-[96svh]">
+        <div className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-radial-[at_50%_100%] from-blue-900 to-[#111827] h-[96svh]">
           
 
           <div className="absolute inset-0">
@@ -56,7 +56,7 @@ const Hero = () => {
             
                     <div className="relative w-full h-[180px] overflow-hidden touch-pan-x">
                       <div className="absolute inset-0 mask-[linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]">
-                        <InfiniteSlider gap={24} reverse className="w-full h-full flex items-center" duration={50}>
+                        <InfiniteSlider gap={24} reverse className="w-full h-full flex items-center pointer-events-none" duration={50}>
                           {logos.map((logo, index) => (
                             <div
                               key={index}

@@ -1,3 +1,4 @@
+import Done from "./components/Done";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Offer from "./components/Offer";
@@ -16,6 +17,7 @@ function App() {
       <Offer />
       <Why />
       <Trust />
+      <Done />
       <Page />
       <Page />
     </>

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Star, CheckCircle, Clock, Award, Cpu, Users, Shield } from "lucide-react";
 
-
 const reasons = [
   {
     title: "Precyzja i jakość",
@@ -50,7 +49,7 @@ const Why = () => {
       (entries) => {
         entries.forEach((entry) => {
           const index = refs.current.findIndex((ref) => ref === entry.target);
-          if (entry.isIntersecting && index !== -1 && !visibleCards[index]) {
+          if (entry.isIntersecting && index !== -1) {
             setVisibleCards((prev) => {
               const newState = [...prev];
               newState[index] = true;
@@ -59,7 +58,7 @@ const Why = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 1 } // pojawia się w połowie ekranu
     );
 
     refs.current.forEach((ref) => {
@@ -67,15 +66,15 @@ const Why = () => {
     });
 
     return () => observer.disconnect();
-  }, [visibleCards]);
+  }, []);
 
   return (
     <section className="w-screen bg-stone-100 py-20">
       <div className="max-w-[1440px] mx-auto w-[90%] flex flex-col lg:flex-row gap-12">
-
+        {/* Lewa strona */}
         <div className="lg:w-1/2 self-start sticky lg:top-24 text-center lg:text-left ml-0 sm:ml-2">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md">
-          <Star className="w-4 h-4" />
+            <Star className="w-4 h-4" />
             WYBIERZ NAS
           </div>
           <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 uppercase">
@@ -87,22 +86,24 @@ const Why = () => {
           </p>
         </div>
 
-
+        {/* Prawa strona */}
         <div className="lg:w-1/2 flex flex-col gap-6">
           {reasons.map((item, index) => (
             <div
               key={index}
               ref={(el) => {
-                refs.current[index] = el;}}
-                style={{ transitionDelay: `${index * 200}ms` }}
-              className={`group relative bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition h-54 sm:h-48 flex flex-col justify-between overflow-hidden transform 
+                refs.current[index] = el;
+              }}
+              className={`group relative bg-white rounded-xl p-6 shadow-md hover:shadow-xl 
+                h-54 sm:h-48 flex flex-col justify-between overflow-hidden transform
+                transition-all duration-500 ease-out
                 ${
                   visibleCards[index]
-                    ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
+                    ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
                 }`}
             >
-  
+              {/* Ikona + Tytuł */}
               <div className="flex flex-col items-start gap-3 z-10">
                 {item.icon}
                 <h2 className="text-2xl font-robert-medium uppercase text-gray-900">
@@ -110,18 +111,16 @@ const Why = () => {
                 </h2>
               </div>
 
-  
-              <p className="text-gray-600 text-base mt-2 sm:pr-30 z-10">{item.desc}</p>
+              {/* Opis */}
+              <p className="text-gray-600 text-base mt-2 sm:pr-30 z-10">
+                {item.desc}
+              </p>
 
-
+              {/* Numer */}
               <div
-                className="
-                  absolute 
-                  
-                  bottom-[-60px] right-[-20px] top-auto text-[16rem]
+                className="absolute bottom-[-60px] right-[-20px] text-[16rem]
                   font-extrabold text-gray-200 leading-none select-none z-0
-                  group-hover:scale-110 transition-transform duration-300 pointer-events-none
-                "
+                  transition-transform duration-300 group-hover:scale-110 pointer-events-none"
               >
                 {item.number}
               </div>
