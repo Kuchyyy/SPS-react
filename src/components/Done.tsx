@@ -31,7 +31,7 @@ const Done = () => {
       <div className="max-w-[1440px] w-[90%] mx-auto">
         {/* 🔹 Badge */}
         <div className="mx-auto text-center">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-1 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md mx-auto">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md mx-auto">
             <Building2 className="w-4 h-4" />
             REALIZACJE
           </div>

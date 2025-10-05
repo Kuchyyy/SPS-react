@@ -62,7 +62,7 @@ const CardNav: React.FC<CardNavProps> = ({
     if (isExpanded) {
       gsap.to(navRef.current, {
         y: 0,
-        duration: 1,
+        duration: 0.4,
         ease: 'power3.out',
       });
       return;
@@ -76,7 +76,7 @@ const CardNav: React.FC<CardNavProps> = ({
       gsap.to(navRef.current, { y: -120, duration: 1, ease: 'power3.out' });
     } else if (currentScroll < lastScroll) {
       // scroll w górę → pokazujemy
-      gsap.to(navRef.current, { y: 0, duration: 1, ease: 'power3.out' });
+      gsap.to(navRef.current, { y: 0, duration: 3, ease: 'power3.out' });
     }
 
     setLastScroll(currentScroll);
