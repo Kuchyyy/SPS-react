@@ -1,5 +1,6 @@
 import  Contact from "./components/Contact";
 import Done from "./components/Done";
+import Faq from "./components/Faq";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Offer from "./components/Offer";
@@ -20,6 +21,7 @@ function App() {
       <Trust />
       <Done />
       <Contact />
+      <Faq />
       <Page />
       <Page />
     </>

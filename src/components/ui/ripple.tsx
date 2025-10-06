@@ -9,6 +9,8 @@ interface RippleProps extends ComponentPropsWithoutRef<"div"> {
   mainCircleOpacity?: number;
   numCircles?: number;
   children?: ReactNode; // 🔹 dodane
+  circleTop?: string
+  circleLeft?: string
 }
 
 export const Ripple = memo(function Ripple({
@@ -17,6 +19,8 @@ export const Ripple = memo(function Ripple({
   numCircles = 10,
   className,
   children, // 🔹 dodane
+  circleTop,
+  circleLeft,
   ...props
 }: RippleProps) {
   return (
@@ -46,8 +50,8 @@ export const Ripple = memo(function Ripple({
       borderStyle: "solid",
       borderWidth: "3px",
       borderColor: `rgba(245, 245, 244, ${opacity})`, // stone-100
-      top: "90%",
-      left: "95%",
+      top: circleTop ?? "90%",
+      left: circleLeft ?? "95%",
       transform: "translate(-50%, -50%) scale(1)",
       animationDelay,
     } as CSSProperties

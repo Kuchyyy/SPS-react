@@ -47,7 +47,7 @@ const Hero = () => {
             {/* slider z logotypami */}
             <section className="py-8 bg-transparent">
               <div className="w-[100%] mx-auto">
-                <div className="relative w-full h-[180px] overflow-hidden touch-pan-y">
+                <div className="relative w-full h-[180px] overflow-hidden touch-pan-y ">
                   {/* mask gradient */}
                   <div className="absolute">
                     <InfiniteSlider
