@@ -84,7 +84,7 @@ const Faq = () => {
       animate={{ height: "auto", opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="overflow-hidden"
+      className="overflow-hidden will-change-transform"
     >
       <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
         {item.a}
@@ -92,6 +92,7 @@ const Faq = () => {
     </motion.div>
   )}
 </AnimatePresence>
+
 
             </div>
           ))}
