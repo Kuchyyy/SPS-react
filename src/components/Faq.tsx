@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HelpCircle, ChevronUp } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
+import { motion, AnimatePresence } from "framer-motion"; // 👈 dodane
 
 const faqItems = [
   {
@@ -56,15 +57,16 @@ const Faq = () => {
           </div>
         </div>
 
+        {/* prawa kolumna z FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
           {faqItems.map((item, i) => (
             <div
               key={i}
-              className="text-white shadow-sm hover:shadow-md transition overflow-hidden w-full border-b border-blue-900"
+              className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900 pb-3"
             >
               <button
                 onClick={() => toggle(i)}
-                className="w-full min-h-16 flex justify-between gap-10 sm:gap-12 items-center text-left px-3 py-2 font-robert-medium text-lg"
+                className="w-full min-h-16 pb-2 flex justify-between gap-10 sm:gap-12 items-center text-left px-3 py-2 font-robert-medium text-lg"
               >
                 {item.q}
                 <ChevronUp
@@ -73,13 +75,23 @@ const Faq = () => {
                   }`}
                 />
               </button>
-              <div
-                className={`px-3 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-300 ${
-                  openIndex === i ? " opacity-100" : "max-h-0 opacity-0"
-                } overflow-hidden`}
-              >
-                {item.a}
-              </div>
+
+              {/* animacja odpowiedzi */}
+              <AnimatePresence initial={false}>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
+                      {item.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
