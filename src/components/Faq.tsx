@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HelpCircle, ChevronUp } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqItems = [
   {
@@ -75,15 +76,22 @@ const Faq = () => {
                 />
               </button>
 
-              <div
-                className={`px-3 pb-2 text-gray-300 text-base font-satoshi-medium transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                  openIndex === i
-                    ? "max-h-[1000px] opacity-100"
-                    : "max-h-0 opacity-0 overflow-hidden"
-                }`}
-              >
-                {item.a}
-              </div>
+              {/* płynna animacja z maską */}
+              <AnimatePresence initial={false}>
+  {openIndex === i && (
+    <motion.div
+      initial={{ clipPath: "inset(0 0 100% 0)" }}
+      animate={{ clipPath: "inset(0 0 0% 0)" }}
+      exit={{ clipPath: "inset(0 0 100% 0)" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="overflow-hidden"
+    >
+      <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
+        {item.a}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
             </div>
           ))}
