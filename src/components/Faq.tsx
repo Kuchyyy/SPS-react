@@ -4,15 +4,15 @@ import { Ripple } from "@/components/ui/ripple";
 
 const faqItems = [
   {
-    q: "Czy mogę liczyć na doradztwo techniczne przed zleceniem realizacji?",
+    q: "Czy mogę liczyć na doradztwo techniczne przed zleceniem realizacji ?",
     a: "Oczywiście. Doradzamy naszym klientom już na etapie wstępnej koncepcji. Pomagamy dobrać optymalne rozwiązania techniczne i technologiczne oraz przygotować założenia projektowe, by inwestycja była funkcjonalna i opłacalna.",
   },
   {
-    q: "Czy SPS Elektro posiada wszystkie wymagane uprawnienia i certyfikaty branżowe?",
+    q: "Czy SPS Elektro posiada wszystkie wymagane uprawnienia i certyfikaty branżowe ?",
     a: "Tak. Nasza firma działa zgodnie z obowiązującymi przepisami i normami. Posiadamy niezbędne uprawnienia budowlane, elektryczne oraz certyfikaty jakości. Regularnie szkolimy nasz zespół, by utrzymać najwyższe standardy branżowe.",
   },
   {
-    q: "Jak wygląda obsługa serwisowa po zakończeniu prac? Czy oferujecie gwarancję?",
+    q: "Jak wygląda obsługa serwisowa po zakończeniu prac ? Czy oferujecie gwarancję ?",
     a: "Po zakończeniu realizacji zapewniamy pełną obsługę serwisową oraz wsparcie techniczne. Każda nasza usługa objęta jest gwarancją – jej długość zależy od rodzaju instalacji, ale w każdym przypadku gwarantujemy szybki czas reakcji i dostępność naszych specjalistów.",
   },
 ];
@@ -64,7 +64,7 @@ const Faq = () => {
             >
               <button
                 onClick={() => toggle(i)}
-                className="w-full min-h-16 flex justify-between gap-6 sm:gap-12 items-center text-left px-3 sm:px-6 py-2 font-robert-medium text-lg"
+                className="w-full min-h-16 flex justify-between gap-10 sm:gap-12 items-center text-left px-3 py-2 font-robert-medium text-lg"
               >
                 {item.q}
                 <ChevronUp
@@ -74,7 +74,7 @@ const Faq = () => {
                 />
               </button>
               <div
-                className={`px-3 sm:px-6 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-700 ${
+                className={`px-3 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-300 ${
                   openIndex === i ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                 } overflow-hidden`}
               >
