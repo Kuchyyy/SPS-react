@@ -66,7 +66,7 @@ const Faq = () => {
             >
               <button
                 onClick={() => toggle(i)}
-                className="w-full min-h-16 pb-2 flex justify-between gap-10 sm:gap-12 items-center text-left px-3 py-2 font-robert-medium text-lg"
+                className="w-full min-h-16 pb-2 flex justify-between gap-3 items-center text-left px-3 py-2 font-robert-medium text-lg"
               >
                 {item.q}
                 <ChevronUp
@@ -78,20 +78,21 @@ const Faq = () => {
 
               {/* animacja odpowiedzi */}
               <AnimatePresence initial={false}>
-                {openIndex === i && (
-                  <motion.div
-                  initial={{ maxHeight: 0, opacity: 0 }}
-                  animate={{ maxHeight: 800, opacity: 1 }} 
-                  exit={{ maxHeight: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="overflow-hidden"
-                >
-                    <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+  {openIndex === i && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="overflow-hidden"
+    >
+      <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
+        {item.a}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
             </div>
           ))}
         </div>
