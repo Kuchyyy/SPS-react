@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HelpCircle, ChevronUp } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const faqItems = [
   {
@@ -60,8 +60,10 @@ const Faq = () => {
         {/* prawa kolumna z FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
           {faqItems.map((item, i) => (
-            <div
+            <motion.div
               key={i}
+              layout
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900 pb-3"
             >
               <button
@@ -76,24 +78,16 @@ const Faq = () => {
                 />
               </button>
 
-              {/* płynna animacja z maską */}
-              <AnimatePresence initial={false}>
-  {openIndex === i && (
-    <motion.div
-      initial={{ clipPath: "inset(0 0 100% 0)" }}
-      animate={{ clipPath: "inset(0 0 0% 0)" }}
-      exit={{ clipPath: "inset(0 0 100% 0)" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="overflow-hidden"
-    >
-      <div className="px-3 pb-2 text-gray-300 text-base font-satoshi-medium">
-        {item.a}
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-            </div>
+              <div
+                className={`px-3 pb-2 text-gray-300 text-base font-satoshi-medium transition-all duration-500 ease-in-out ${
+                  openIndex === i
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0 overflow-hidden"
+                }`}
+              >
+                {item.a}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
