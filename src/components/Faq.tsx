@@ -75,7 +75,7 @@ const Faq = () => {
               </button>
               <div
                 className={`px-3 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-300 ${
-                  openIndex === i ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  openIndex === i ? " opacity-100" : "max-h-0 opacity-0"
                 } overflow-hidden`}
               >
                 {item.a}
