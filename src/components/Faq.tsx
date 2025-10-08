@@ -19,8 +19,13 @@ const faqItems = [
 ];
 
 const Faq = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+
+  const toggle = (i: number) => {
+    setOpenIndexes((prev) =>
+      prev.includes(i) ? prev.filter((index) => index !== i) : [...prev, i]
+    );
+  };
 
   return (
     <section
@@ -37,8 +42,9 @@ const Faq = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between gap-10 relative z-10">
+        {/* Lewa kolumna */}
         <div className="flex-1 max-w-[500px] flex flex-col items-center text-center sm:items-start sm:text-left">
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between h-full items-center sm:items-start">
             <div>
               <h3 className="text-3xl md:text-5xl font-satoshi mb-5 uppercase">
                 Masz więcej pytań?
@@ -50,14 +56,14 @@ const Faq = () => {
             </div>
             <a
               href="tel:+48666011919"
-              className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-semibold transition-colors w-[100%] sm:w-auto"
+              className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-semibold transition-colors w-[90%] sm:w-auto text-center"
             >
               Zadzwoń
             </a>
           </div>
         </div>
 
-        {/* prawa kolumna z FAQ */}
+        {/* Prawa kolumna z FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
           {faqItems.map((item, i) => (
             <motion.div
@@ -73,14 +79,14 @@ const Faq = () => {
                 {item.q}
                 <ChevronUp
                   className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
-                    openIndex === i ? "rotate-180" : ""
+                    openIndexes.includes(i) ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
               <div
                 className={`px-3 pb-2 text-gray-300 text-base font-satoshi-medium transition-all duration-500 ease-in-out ${
-                  openIndex === i
+                  openIndexes.includes(i)
                     ? "max-h-[500px] opacity-100"
                     : "max-h-0 opacity-0 overflow-hidden"
                 }`}
