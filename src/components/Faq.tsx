@@ -1,7 +1,8 @@
-import { useState } from "react";
+"use client";
+
 import { HelpCircle, ChevronUp } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
-import { motion } from "framer-motion";
+import { Disclosure } from "@headlessui/react";
 
 const faqItems = [
   {
@@ -19,14 +20,6 @@ const faqItems = [
 ];
 
 const Faq = () => {
-  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
-
-  const toggle = (i: number) => {
-    setOpenIndexes((prev) =>
-      prev.includes(i) ? prev.filter((index) => index !== i) : [...prev, i]
-    );
-  };
-
   return (
     <section
       id="faq"
@@ -34,6 +27,7 @@ const Faq = () => {
     >
       <Ripple circleTop="10%" circleLeft="5%" />
 
+      {/* Nagłówek */}
       <div className="flex justify-center sm:justify-start mb-6 relative z-10">
         <div className="inline-flex items-center gap-2 bg-blue-900 text-white rounded-full px-4 py-2 text-sm font-semibold shadow-md">
           <HelpCircle className="w-4 h-4" />
@@ -63,37 +57,32 @@ const Faq = () => {
           </div>
         </div>
 
-        {/* Prawa kolumna z FAQ */}
+        {/* Prawa kolumna FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
           {faqItems.map((item, i) => (
-            <motion.div
-              key={i}
-              layout
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900 pb-3"
-            >
-              <button
-                onClick={() => toggle(i)}
-                className="w-full min-h-16 pb-2 flex justify-between gap-3 items-center text-left px-3 py-2 font-robert-medium text-lg"
-              >
-                {item.q}
-                <ChevronUp
-                  className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
-                    openIndexes.includes(i) ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+            <Disclosure key={i}>
+              {({ open }) => (
+                <div className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900 pb-3">
+                  <Disclosure.Button className="w-full min-h-16 pb-2 flex justify-between gap-3 items-center text-left px-3 py-2 font-robert-medium text-lg">
+                    {item.q}
+                    <ChevronUp
+                      className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
+                        open ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Disclosure.Button>
 
-              <div
-                className={`px-3 pb-2 text-gray-300 text-base font-satoshi-medium transition-all duration-500 ease-in-out ${
-                  openIndexes.includes(i)
-                    ? "max-h-[500px] opacity-100"
-                    : "max-h-0 opacity-0 overflow-hidden"
-                }`}
-              >
-                {item.a}
-              </div>
-            </motion.div>
+                  <Disclosure.Panel
+                    static
+                    className={`px-3 pb-2 text-gray-300 text-base font-satoshi-medium transition-all duration-600 ease-in-out ${
+                      open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                    }`}
+                  >
+                    {item.a}
+                  </Disclosure.Panel>
+                </div>
+              )}
+            </Disclosure>
           ))}
         </div>
       </div>
