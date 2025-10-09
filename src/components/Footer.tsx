@@ -92,36 +92,46 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Dolna sekcja */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-            <p className="text-gray-500 text-sm font-robert-medium">
-              © {new Date().getFullYear()} SPS Elektro. Wszelkie prawa zastrzeżone.
-            </p>
+         {/* Dolna sekcja */}
+<div className="flex flex-col-reverse items-center justify-between gap-4 pt-8">
+  <div className="flex flex-col md:flex-row gap-2 w-full items-center justify-between text-sm text-gray-600 font-robert-medium">
+    <p>© {new Date().getFullYear()} SPS Elektro. Wszelkie prawa zastrzeżone.</p>
 
-            <div className="flex gap-2">
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-blue-900 hover:bg-[#005494] px-4 py-2 rounded-md transition text-white"
-              >
-                <Linkedin className="w-5 h-5" />
-                LinkedIn
-              </a>
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="flex items-center bg-blue-900 hover:bg-[#005494] px-3 rounded-md transition text-white cursor-pointer"
-              >
-                <ArrowUp className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+    <div className="flex items-center gap-1">
+      MADE WITH 
+      <Heart className="w-4 h-4 text-red-500 fill-red-500" /> 
+      BY 
+      <a 
+        href="https://github.com/Kuchyyy" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="font-bold transition-colors hover:text-blue-900"
+      >
+        @KHY
+      </a>
+    </div>
+  </div>
 
-          {/* ✨ napis na samym dole */}
-          <div className="pt-6 text-start text-gray-600 text-sm font-robert-medium flex items-center justify-center gap-2">
-            MADE WITH <Heart className="w-4 h-4 text-red-500 fill-red-500" /> BY <span className="font-bold">@KHY</span>
-          </div>
+  <div className="flex gap-2 w-full justify-center md:justify-end">
+    {/* LinkedIn */}
+    <a
+      href="https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 bg-blue-900 hover:bg-[#005494] px-4 py-2 rounded-md transition text-white"
+    >
+      <Linkedin className="w-5 h-5" />
+      LinkedIn
+    </a>
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="flex items-center bg-blue-900 hover:bg-[#005494] px-3 rounded-md transition text-white cursor-pointer"
+    >
+      <ArrowUp className="w-5 h-5" />
+    </button>
+  </div>
+</div>
+
         </footer>
       </div>
 
