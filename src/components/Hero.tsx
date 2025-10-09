@@ -1,7 +1,52 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Threads from "./Threads"
 import { InfiniteSlider } from "@/components/ui/infinite-slider"
 
+gsap.registerPlugin(ScrollTrigger)
+
 const Hero = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const innerRef = useRef<HTMLDivElement>(null) // ref na div z rounded
+
+  useEffect(() => {
+    if (wrapperRef.current && innerRef.current) {
+      gsap.fromTo(
+        wrapperRef.current,
+        { width: "90%" },
+        {
+          width: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top top",
+            end: "+=200",
+            scrub: true,
+          },
+        }
+      )
+
+      // osobna animacja na borderRadius
+      gsap.fromTo(
+        innerRef.current,
+        { borderRadius: "1rem" }, // odpowiada rounded-2xl
+        {
+          borderRadius: "0rem",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top top",
+            end: "+=200",
+            scrub: true,
+          },
+        }
+      )
+    }
+  }, [])
+
   const logos = [
     { src: "https://akson.com.pl/wp-content/uploads/2022/12/siemens-logo-dax.png", alt: "Siemens logo" },
     { src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bosch_logo.png", alt: "Bosch logo" },
@@ -21,15 +66,22 @@ const Hero = () => {
 
   return (
     <section className="w-screen bg-stone-100">
-      <div className="max-w-[1440px] mx-auto w-[90%] h-full flex flex-col justify-center mt-4">
-        <div className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-radial-[at_50%_100%] from-blue-900 to-[#111827] h-[96svh]">
+      <div
+        ref={wrapperRef}
+        className="mx-auto w-[80%] h-[96svh] flex flex-col justify-center mt-4"
+      >
+        {/* tu ref na innera */}
+        <div
+          ref={innerRef}
+          className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-radial-[at_90%_100%] from-blue-900 to-[#111827] h-full"
+        >
           {/* animacja w tle */}
           <div className="absolute inset-0">
             <Threads
               amplitude={0.8}
               distance={0}
               enableMouseInteraction={false}
-              className="w-full h-full translate-y-16 md:translate-y-0"
+              className="w-screen h-full translate-y-16 md:translate-y-0"
             />
           </div>
 
@@ -48,7 +100,6 @@ const Hero = () => {
             <section className="py-8 bg-transparent">
               <div className="w-[100%] mx-auto">
                 <div className="relative w-full h-[180px] overflow-hidden touch-pan-y ">
-                  {/* mask gradient */}
                   <div className="absolute">
                     <InfiniteSlider
                       gap={24}

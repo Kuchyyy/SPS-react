@@ -4,7 +4,8 @@ import CountUp from "react-countup";
 
 const Trust = () => {
   return (
-    <section className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white md:px-16 py-12 md:py-16 text-center md:text-left mx-auto overflow-hidden">
+    <div className="py-20">
+    <section className="relative w-[90%] max-w-[1440px]  rounded-2xl bg-[#111827] text-white md:px-16 py-12 md:py-16 text-center md:text-left mx-auto overflow-hidden">
       <Ripple />
 
       <div className="inline-block bg-blue-900 text-white rounded-full px-4 py-2 text-sm font-semibold mb-6 relative z-10">
@@ -23,7 +24,7 @@ const Trust = () => {
           </p>
           <a
             href="#"
-            className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-semibold transition-colors w-[90%] sm:w-auto"
+            className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-regular transition-colors w-[90%] sm:w-auto"
           >
             Dowiedz się więcej
           </a>
@@ -51,6 +52,8 @@ const Trust = () => {
         </div>
       </div>
     </section>
+
+    </div>
   );
 };
 

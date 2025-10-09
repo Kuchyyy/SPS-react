@@ -219,7 +219,7 @@ const Threads: React.FC<ThreadsProps> = ({
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [threadColor, amplitude, distance, enableMouseInteraction]); // ✅ zależności
+  }, [threadColor, amplitude, distance, enableMouseInteraction]); 
 
   return <div ref={containerRef} className="w-full h-full relative" {...rest} />;
 };

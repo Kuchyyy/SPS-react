@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { HelpCircle, ChevronUp } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
+
 
 const faqItems = [
   {
@@ -19,84 +20,17 @@ const faqItems = [
   },
 ];
 
-// Jeden element FAQ z animacją wysokości
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  const toggle = () => {
-    const el = contentRef.current;
-    if (!el) return;
-
-    const duration = 300;
-    const startHeight = el.offsetHeight;
-    const targetHeight = open ? 0 : el.scrollHeight;
-    let startTime: number | null = null;
-
-    const step = (time: number) => {
-      if (startTime === null) startTime = time;
-      const elapsed = time - startTime;
-      const rawProgress = elapsed / duration;
-      const progress = Math.min(rawProgress, 1); // zawsze 0–1
-      const easeProgress = 1 - Math.pow(1 - progress, 2); // easeOut
-
-      const currentHeight = open
-        ? startHeight * (1 - easeProgress)
-        : targetHeight * easeProgress;
-
-      el.style.height = currentHeight + "px";
-      el.style.overflow = "hidden";
-      el.style.visibility = "visible";
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        if (open) {
-          el.style.height = "0px";
-          el.style.overflow = "hidden";
-          el.style.visibility = "hidden";
-        } else {
-          el.style.height = "auto";
-          el.style.overflow = "";
-          el.style.visibility = "visible";
-        }
-        setOpen(!open);
-      }
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  return (
-    <div className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900 pb-3">
-      <button
-        onClick={toggle}
-        className="w-full min-h-16 pb-2 flex justify-between gap-3 items-center text-left px-3 py-2 font-robert-medium text-lg"
-      >
-        {q}
-        <ChevronUp
-          className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-
-      <div
-        ref={contentRef}
-        style={{ height: "0px", overflow: "hidden", visibility: "hidden" }}
-        className="px-3 pt-2 text-gray-300 text-base font-satoshi-medium"
-      >
-        {a}
-      </div>
-    </div>
-  );
-}
-
 export default function Faq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (i: number) =>
+    setOpenIndex(openIndex === i ? null : i);
+
   return (
+    <div className="py-20">
     <section
       id="faq"
-      className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white px-6 lg:px-16 py-12 mx-auto overflow-hidden"
+      className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white px-6 lg:px-16 py-12 md:py-16 mx-auto overflow-hidden"
     >
       <Ripple circleTop="10%" circleLeft="5%" />
 
@@ -110,20 +44,21 @@ export default function Faq() {
 
       <div className="flex flex-col lg:flex-row justify-between gap-10 relative z-10">
         {/* Lewa kolumna */}
-        <div className="flex-1 max-w-[500px] flex flex-col items-center text-center sm:items-start sm:text-left">
-          <div className="flex flex-col justify-between h-full items-center sm:items-start">
+        <div className="flex-1 max-w-[500px] flex flex-col">
+          <div className="flex flex-col justify-between h-full items-center text-center sm:items-start sm:text-left pl-0">
             <div>
               <h3 className="text-3xl md:text-5xl font-satoshi mb-5 uppercase">
                 Masz więcej pytań?
               </h3>
               <p className="text-gray-300 leading-relaxed mb-6 font-satoshi-medium text-base px-3 sm:px-0">
-                Zebraliśmy najważniejsze tematy, które najczęściej nurtują naszych klientów.
+                Zebraliśmy najważniejsze tematy, które najczęściej nurtują naszych klientów. 
                 Jeśli nadal nie znalazłeś odpowiedzi na swoje pytanie, skontaktuj się z nami.
               </p>
             </div>
             <a
               href="tel:+48666011919"
-              className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-semibold transition-colors w-[90%] sm:w-auto text-center"
+              className="w-[90%] sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-regular transition-colors 
+                        text-center sm:text-left"
             >
               Zadzwoń
             </a>
@@ -133,10 +68,38 @@ export default function Faq() {
         {/* Prawa kolumna FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
           {faqItems.map((item, i) => (
-            <FaqItem key={i} q={item.q} a={item.a} />
+            <div
+              key={i}
+              className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900"
+            >
+              <button
+                onClick={() => toggle(i)}
+                className="w-full min-h-16 flex gap-3 justify-between items-center text-left px-3 py-2 font-robert-medium text-lg"
+              >
+                {item.q}
+                <ChevronUp
+                  className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
+                    openIndex === i ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Panel z płynnym otwieraniem */}
+              <div
+                className={`px-3 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-500 ease-in-out ${
+                  openIndex === i
+                    ? "max-h-[1000px] opacity-100"
+                    : "max-h-0 opacity-0 overflow-hidden"
+                }`}
+              >
+                {item.a}
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
+
+    </div>
   );
 }
