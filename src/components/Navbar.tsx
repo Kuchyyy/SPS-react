@@ -7,7 +7,6 @@ const Navbar = () => {
       bgColor: "#00629C",   // jasny błękit
       textColor: "#fff",
       links: [
-        { label: "Zapytaj o oferte", href: "/oferta/strony-www", ariaLabel: "Oferta Strony WWW" },
       ]
     },
     {
@@ -15,7 +14,6 @@ const Navbar = () => {
       bgColor: "#00629C",   // jasny błękit
       textColor: "#fff",
       links: [
-        { label: "Portfolio", href: "/realizacje/portfolio", ariaLabel: "Realizacje Portfolio" },
       ]
     },
     {

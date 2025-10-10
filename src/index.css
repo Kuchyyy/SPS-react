@@ -66,6 +66,11 @@ body {
   bg-stone-100;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 @theme {
   --font-satoshi: 'satoshi', sans-serif;
   --font-satoshi-medium: 'satoshi-medium', sans-serif;

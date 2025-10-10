@@ -9,7 +9,7 @@ const Trust = () => {
       <Ripple />
 
       <div className="inline-block bg-blue-900 text-white rounded-full px-4 py-2 text-sm font-semibold mb-6 relative z-10">
-        <Heart className="w-4 h-4 inline mr-2" />
+        <Heart className="w-4 h-4 inline mr-2 mb-1" />
         ZAUFANIE
       </div>
 
@@ -24,7 +24,7 @@ const Trust = () => {
           </p>
           <a
             href="#"
-            className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-regular transition-colors w-[90%] sm:w-auto"
+            className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium transition-colors w-[90%] sm:w-auto"
           >
             Dowiedz się więcej
           </a>

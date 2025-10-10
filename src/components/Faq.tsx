@@ -57,7 +57,7 @@ export default function Faq() {
             </div>
             <a
               href="tel:+48666011919"
-              className="w-[90%] sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-regular transition-colors 
+              className="w-[90%] sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium transition-colors 
                         text-center sm:text-left"
             >
               Zadzwoń
