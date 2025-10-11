@@ -26,7 +26,7 @@ const Trust = () => {
             href="#"
             className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium transition-colors w-[90%] sm:w-auto"
           >
-            Dowiedz się więcej
+            Zadzwoń 
           </a>
         </div>
 

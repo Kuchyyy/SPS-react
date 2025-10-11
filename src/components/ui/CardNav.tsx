@@ -53,6 +53,16 @@ const CardNav: React.FC<CardNavProps> = ({
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // sprawdzanie mobile/desktop
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () =>
+      setIsMobile(window.matchMedia('(max-width: 640px)').matches);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // startowo navbar poza ekranem
   useLayoutEffect(() => {
     if (!navRef.current) return;
@@ -86,19 +96,17 @@ const CardNav: React.FC<CardNavProps> = ({
 
     const cards = navEl.querySelectorAll('.nav-card') as NodeListOf<HTMLElement>;
     if (cards.length > 0) {
-      const isMobile =
+      const isMobileView =
         typeof window !== 'undefined' &&
         window.matchMedia('(max-width: 640px)').matches;
 
-      if (isMobile) {
-        // mobile: sumujemy wysokości kart
+      if (isMobileView) {
         const sumCardHeights = Array.from(cards).reduce(
           (acc, el) => acc + el.offsetHeight + 6,
           0
         );
-        return 60 + sumCardHeights + 16; // topbar + karty + padding
+        return 60 + sumCardHeights + 16;
       } else {
-        // desktop: największa karta
         const maxCardHeight = Array.from(cards).reduce(
           (acc, el) => Math.max(acc, el.offsetHeight),
           0
@@ -171,17 +179,28 @@ const CardNav: React.FC<CardNavProps> = ({
       tl.play(0);
     } else {
       setIsHamburgerOpen(false);
+      setOpenDropdown(false);
       tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
       tl.reverse();
     }
+  };
+
+  const closeMenu = () => {
+    const tl = tlRef.current;
+    if (!tl) return;
+    setIsHamburgerOpen(false);
+    setOpenDropdown(false);
+    tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+    tl.reverse();
   };
 
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
   };
 
-  // funkcje do obsługi dropdownu
+  // obsługa dropdownu
   const handleMouseEnter = () => {
+    if (isMobile) return; // na mobile nie działa hover
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
       dropdownTimeoutRef.current = null;
@@ -190,9 +209,14 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return; // na mobile nie działa hover
     dropdownTimeoutRef.current = setTimeout(() => {
       setOpenDropdown(false);
-    }, 500); // delay 1 sekunda
+    }, 500);
+  };
+
+  const toggleDropdown = () => {
+    setOpenDropdown((prev) => !prev);
   };
 
   return (
@@ -237,6 +261,7 @@ const CardNav: React.FC<CardNavProps> = ({
           {/* CTA */}
           <button
             type="button"
+            onClick={closeMenu}
             className="hidden md:inline-flex border-0 rounded-lg px-4 h-full nav-card-label font-robert-medium cursor-pointer transition-colors duration-300 items-center uppercase"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
@@ -261,6 +286,7 @@ const CardNav: React.FC<CardNavProps> = ({
               {item.label !== 'Kontakt' ? (
                 <a
                   href={`#${item.label.toLowerCase()}`}
+                  onClick={closeMenu}
                   className="nav-card-label font-robert-medium text-[18px] md:text-[20px] uppercase cursor-pointer hover:text-gray-200 transition w-full"
                 >
                   {item.label}
@@ -271,39 +297,50 @@ const CardNav: React.FC<CardNavProps> = ({
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {/* Kliknięcie przenosi do #kontakt */}
-                  <a
-                    href="#kontakt"
-                    className="flex w-full items-center justify-between nav-card-label font-robert-medium text-[18px] md:text-[20px] uppercase cursor-pointer hover:text-gray-200 transition"
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 ${
-                        openDropdown ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </a>
-
-                  {/* Dropdown */}
-                  {openDropdown && (
-                 <div
-                 className="absolute left-0 mr- top-full mt-8 flex flex-col bg-white shadow-lg rounded-md p-2 z-50"
-                 style={{ width: 'calc(100% + 2rem)', transform: 'translateX(-1rem)' }}
-               >
-                  {item.links?.map((lnk, i) => (
+                  <div className="flex w-full items-center justify-between">
                     <a
-                      key={`${lnk.label}-${i}`}
-                      className="px-3 py-1.5 text-gray-800 hover:bg-gray-100 rounded-md flex items-center gap-2 text-sm transition"
-                      href={lnk.href}
-                      aria-label={lnk.ariaLabel}
+                      href="#kontakt"
+                      onClick={closeMenu}
+                      className="nav-card-label font-robert-medium text-[18px] md:text-[20px] uppercase cursor-pointer hover:text-gray-200 transition"
                     >
-                      <GoArrowUpRight className="text-blue-600 w-4 h-4" />
-                      {lnk.label}
+                      {item.label}
                     </a>
-                  ))}
-                </div>
-                
-                 
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleDropdown();
+                      }}
+                      className="ml-2"
+                    >
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-300 ${
+                          openDropdown ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+
+                  {openDropdown && (
+                    <div
+                      className="absolute left-0 top-full mt-8 flex flex-col bg-white shadow-lg rounded-md p-2 z-50"
+                      style={{ width: 'calc(100% + 2rem)', transform: 'translateX(-1rem)' }}
+                    >
+                      {item.links?.map((lnk) => (
+                        <a
+                          key={`${lnk.label}`}
+                          className="px-3 py-1.5 text-gray-800 hover:bg-gray-100 rounded-md flex items-center gap-2 text-sm transition"
+                          href={lnk.href}
+                          onClick={closeMenu}
+                          aria-label={lnk.ariaLabel}
+                        >
+                          <GoArrowUpRight className="text-blue-600 w-4 h-4" />
+                          {lnk.label}
+                        </a>
+                      ))}
+                    </div>
                   )}
                 </div>
               )}
