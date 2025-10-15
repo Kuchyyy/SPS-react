@@ -14,19 +14,19 @@ const projects = [
     title: "SULAGRA",
     desc: "Modernizacja instalacji przemysłowych i oświetlenia hal produkcyjnych w zakładach Sulagry – od projektu po uruchomienie.",
     img: "/photos/cos3.png",
-    video: "/films/sulagra.MOV",
+    video: "/films/sulagra.",
   },
   {
     title: "JELFA",
     desc: "Instalacja wydajnych systemów oświetlenia i zasilania w zakładach produkcyjnych Jelfa – zabezpieczenia antyporażeniowe i awaryjne.",
     img: "/photos/cos2.png",
-    video: "/films/jelfa.MOV",
+    video: "/films/jelfa.mp4",
   },
   {
     title: "KOMENDA POLICJI",
     desc: "Kompleksowe wykonanie instalacji elektrycznej i systemów zabezpieczeń w nowoczesnym budynku Komendy Policji we Wrocławiu.",
     img: "/photos/cos1.png",
-    video: "/films/komendapolicji.MOV",
+    video: "/films/komendapolicji.mp4",
   },
 ];
 
