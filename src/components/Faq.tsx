@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HelpCircle, ChevronDown } from "lucide-react";
-import { Ripple } from "@/components/ui/ripple";
+//import { Ripple } from "@/components/ui/ripple";
 
 
 const faqs = [
@@ -32,7 +32,7 @@ export default function Faq() {
       id="faq"
       className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white px-6 lg:px-16 py-12 md:py-16 mx-auto overflow-hidden"
     >
-      <Ripple circleTop="10%" circleLeft="5%" />
+      {/*<Ripple circleTop="10%" circleLeft="5%" />*/}
 
       {/* Nagłówek */}
       <div className="flex justify-center sm:justify-start mb-6 relative z-10">
@@ -44,7 +44,7 @@ export default function Faq() {
 
       <div className="flex flex-col lg:flex-row justify-between gap-10 relative z-10">
         {/* Lewa kolumna */}
-        <div className="flex-1 max-w-[500px] flex flex-col">
+        <div className="flex-1 max-w-[600px] flex flex-col">
           <div className="flex flex-col justify-between h-full items-center text-center sm:items-start sm:text-left pl-0">
             <div>
               <h3 className="text-3xl md:text-5xl font-satoshi mb-5 uppercase">
@@ -84,7 +84,7 @@ export default function Faq() {
                 />
               </button>
               <div
-                className={`md:px-3 pb-4 text-gray-300 transition-all duration-500 ease-in-out ${
+                className={`md:px-3 pb-4 text-gray-300 transition-all duration-900 ease-in-out ${
                   openIndex === index
                     ? "max-h-[1000px] opacity-100"
                     : "max-h-0 opacity-0 overflow-hidden"
