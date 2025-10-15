@@ -95,12 +95,12 @@ const Contact = () => {
           ></iframe>
         </div>
 
-        <div className="mt-6 text-center">
+        <div className="mt-6 sm:text-end text-center">
           <a
             href="https://www.google.com/maps/place/ul.+Harcerska+21,+52-404+Wroc%C5%82aw"
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full sm:inline-block sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium text-white transition-colors"
+            className="block w-full sm:inline-block sm:w-auto items-end bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium text-white transition-colors"
           >
             Prowadź w Google Maps
           </a>

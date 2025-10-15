@@ -9,11 +9,6 @@ import {
 
 const projects = [
   {
-    title: "KOMENDA POLICJI",
-    desc: "Kompleksowe wykonanie instalacji elektrycznej i systemów zabezpieczeń w nowoczesnym budynku Komendy Policji we Wrocławiu.",
-    img: "/photos/cos1.png",
-  },
-  {
     title: "SULAGRA",
     desc: "Modernizacja instalacji przemysłowych i oświetlenia hal produkcyjnych w zakładach Sulagry – od projektu po uruchomienie.",
     img: "/photos/cos3.png",
@@ -22,6 +17,11 @@ const projects = [
     title: "JELFA",
     desc: "Instalacja wydajnych systemów oświetlenia i zasilania w zakładach produkcyjnych Jelfa – zabezpieczenia antyporażeniowe i awaryjne.",
     img: "/photos/cos2.png",
+  },
+  {
+    title: "KOMENDA POLICJI",
+    desc: "Kompleksowe wykonanie instalacji elektrycznej i systemów zabezpieczeń w nowoczesnym budynku Komendy Policji we Wrocławiu.",
+    img: "/photos/cos1.png",
   },
 ];
 

@@ -1,30 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { HelpCircle, ChevronUp } from "lucide-react";
+import { HelpCircle, ChevronDown } from "lucide-react";
 import { Ripple } from "@/components/ui/ripple";
 
 
-const faqItems = [
+const faqs = [
   {
-    q: "Czy mogę liczyć na doradztwo techniczne przed zleceniem realizacji ?",
-    a: "Oczywiście. Doradzamy naszym klientom już na etapie wstępnej koncepcji. Pomagamy dobrać optymalne rozwiązania techniczne i technologiczne oraz przygotować założenia projektowe, by inwestycja była funkcjonalna i opłacalna.",
+    question: "Czy mogę liczyć na doradztwo techniczne przed zleceniem realizacji?",
+    answer:
+      "Oczywiście. Doradzamy naszym klientom już na etapie wstępnej koncepcji. Pomagamy dobrać optymalne rozwiązania techniczne i technologiczne oraz przygotować założenia projektowe, by inwestycja była funkcjonalna i opłacalna.",
   },
   {
-    q: "Czy SPS Elektro posiada wszystkie wymagane uprawnienia i certyfikaty branżowe ?",
-    a: "Tak. Nasza firma działa zgodnie z obowiązującymi przepisami i normami. Posiadamy niezbędne uprawnienia budowlane, elektryczne oraz certyfikaty jakości. Regularnie szkolimy nasz zespół, by utrzymać najwyższe standardy branżowe.",
+    question: "Czy SPS Elektro posiada wszystkie wymagane uprawnienia i certyfikaty branżowe ?",
+    answer:
+      "Tak. Nasza firma działa zgodnie z obowiązującymi przepisami i normami. Posiadamy niezbędne uprawnienia budowlane, elektryczne oraz certyfikaty jakości. Regularnie szkolimy nasz zespół, by utrzymać najwyższe standardy branżowe.",
   },
   {
-    q: "Jak wygląda obsługa serwisowa po zakończeniu prac ? Czy oferujecie gwarancję ?",
-    a: "Po zakończeniu realizacji zapewniamy pełną obsługę serwisową oraz wsparcie techniczne. Każda nasza usługa objęta jest gwarancją – jej długość zależy od rodzaju instalacji, ale w każdym przypadku gwarantujemy szybki czas reakcji i dostępność naszych specjalistów.",
+    question: "Jak wygląda obsługa serwisowa po zakończeniu prac ? Czy oferujecie gwarancję ?",
+    answer:
+      "Po zakończeniu realizacji zapewniamy pełną obsługę serwisową oraz wsparcie techniczne. Każda nasza usługa objęta jest gwarancją – jej długość zależy od rodzaju instalacji, ale w każdym przypadku gwarantujemy szybki czas reakcji i dostępność naszych specjalistów.",
   },
 ];
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (i: number) =>
-    setOpenIndex(openIndex === i ? null : i);
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <div className="py-20">
@@ -57,7 +57,7 @@ export default function Faq() {
             </div>
             <a
               href="tel:+48666011919"
-              className="w-[90%] sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium transition-colors 
+              className="w-full sm:w-auto bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-bold font-robert-medium transition-colors 
                         text-center sm:text-left"
             >
               Zadzwoń
@@ -67,32 +67,30 @@ export default function Faq() {
 
         {/* Prawa kolumna FAQ */}
         <div className="flex-1 flex flex-col gap-4 items-start text-left font-robert-medium">
-          {faqItems.map((item, i) => (
+        {faqs.map((faq, index) => (
             <div
-              key={i}
-              className="text-white shadow-sm hover:shadow-md transition w-full border-b border-blue-900"
+              key={index}
+              className=" border-b-blue-900 border-b-1 shadow-sm"
             >
               <button
-                onClick={() => toggle(i)}
-                className="w-full min-h-16 flex gap-3 justify-between items-center text-left px-3 py-2 font-robert-medium text-lg"
+                className="w-full flex justify-between gap-2.5 items-top md:px-3 py-4 text-left text-lg font-medium text-white"
+                onClick={() => setOpenIndex(index)}
               >
-                {item.q}
-                <ChevronUp
-                  className={`min-w-6 h-6 text-blue-900 transition-transform duration-300 ${
-                    openIndex === i ? "rotate-180" : ""
+                {faq.question}
+                <ChevronDown
+                  className={`transition-transform duration-300 min-w-6 text-blue-900 ${
+                    openIndex === index ? "rotate-180" : ""
                   }`}
                 />
               </button>
-
-              {/* Panel z płynnym otwieraniem */}
               <div
-                className={`px-3 pb-4 text-gray-300 text-base font-satoshi-medium transition-all duration-500 ease-in-out ${
-                  openIndex === i
+                className={`md:px-3 pb-4 text-gray-300 transition-all duration-500 ease-in-out ${
+                  openIndex === index
                     ? "max-h-[1000px] opacity-100"
                     : "max-h-0 opacity-0 overflow-hidden"
                 }`}
               >
-                {item.a}
+                {faq.answer}
               </div>
             </div>
           ))}

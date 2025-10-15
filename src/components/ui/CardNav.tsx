@@ -29,8 +29,6 @@ export interface CardNavProps {
   buttonTextColor?: string;
 }
 
-const NAV_OFFSCREEN_Y = -120;
-
 const CardNav: React.FC<CardNavProps> = ({
   logo,
   logoAlt = 'Logo',
@@ -44,74 +42,98 @@ const CardNav: React.FC<CardNavProps> = ({
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [forceHidden, setForceHidden] = useState(false);
-
+  const [lastScroll, setLastScroll] = useState(0);
   const { y: currentScroll } = useWindowScroll();
 
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const lastScrollRef = useRef(0);
 
-  // dropdown
+  // dropdown dla Kontakt
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // mobile/desktop
+  // sprawdzanie mobile/desktop
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.matchMedia('(max-width: 640px)').matches);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
+    const checkMobile = () =>
+      setIsMobile(window.matchMedia('(max-width: 640px)').matches);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // helpers: animacje nav
-  const hideNav = (dur = 0.6) => {
-    if (!navRef.current) return;
-    gsap.killTweensOf(navRef.current);
-    gsap.to(navRef.current, { y: NAV_OFFSCREEN_Y, duration: dur, ease: 'power3.out' });
-  };
-
-  const showNav = (dur = 0.4) => {
-    if (!navRef.current) return;
-    gsap.killTweensOf(navRef.current);
-    gsap.to(navRef.current, { y: 0, duration: dur, ease: 'power3.out' });
-  };
-
-  // startowo schowany
+  // startowo navbar poza ekranem
   useLayoutEffect(() => {
     if (!navRef.current) return;
-    gsap.set(navRef.current, { y: NAV_OFFSCREEN_Y });
+    gsap.set(navRef.current, { y: -120 });
   }, []);
 
-  // animacja kart
+  // logika chowająca / pokazująca navbar przy scrollu
+  useEffect(() => {
+    if (!navRef.current) return;
+
+    if (isExpanded) {
+      gsap.to(navRef.current, { y: 0, duration: 0.4, ease: 'power3.out' });
+      return;
+    }
+
+    if (currentScroll === 0) {
+      gsap.to(navRef.current, { y: 0, duration: 1, ease: 'power3.out' });
+    } else if (currentScroll > lastScroll) {
+      gsap.to(navRef.current, { y: -120, duration: 1, ease: 'power3.out' });
+    } else if (currentScroll < lastScroll) {
+      gsap.to(navRef.current, { y: 0, duration: 3, ease: 'power3.out' });
+    }
+
+    setLastScroll(currentScroll);
+  }, [currentScroll, lastScroll, isExpanded]);
+
+  // animacja kart – wysokość tylko karty (dropdown ignorujemy)
   const calculateHeight = () => {
     const navEl = navRef.current;
     if (!navEl) return 60;
+
     const cards = navEl.querySelectorAll('.nav-card') as NodeListOf<HTMLElement>;
     if (cards.length > 0) {
-      const isMobileView = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
+      const isMobileView =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(max-width: 640px)').matches;
+
       if (isMobileView) {
-        const sum = Array.from(cards).reduce((acc, el) => acc + el.offsetHeight + 6, 0);
-        return 60 + sum + 16;
+        const sumCardHeights = Array.from(cards).reduce(
+          (acc, el) => acc + el.offsetHeight + 6,
+          0
+        );
+        return 60 + sumCardHeights + 16;
       } else {
-        const maxH = Array.from(cards).reduce((acc, el) => Math.max(acc, el.offsetHeight), 0);
-        return 60 + maxH + 16;
+        const maxCardHeight = Array.from(cards).reduce(
+          (acc, el) => Math.max(acc, el.offsetHeight),
+          0
+        );
+        return 60 + maxCardHeight + 16;
       }
     }
+
     return 60;
   };
 
   const createTimeline = () => {
     const navEl = navRef.current;
     if (!navEl) return null;
+
     gsap.set(navEl, { height: 60, overflow: 'visible' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
+
     tl.to(navEl, { height: calculateHeight, duration: 0.4, ease });
-    tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
+    tl.to(
+      cardsRef.current,
+      { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 },
+      '-=0.1'
+    );
+
     return tl;
   };
 
@@ -139,54 +161,27 @@ const CardNav: React.FC<CardNavProps> = ({
       } else {
         tlRef.current.kill();
         const newTl = createTimeline();
-        if (newTl) tlRef.current = newTl;
+        if (newTl) {
+          tlRef.current = newTl;
+        }
       }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isExpanded]);
 
-  // logika scrolla (z uwzględnieniem forceHidden)
-  useEffect(() => {
-    if (!navRef.current) return;
-    const last = lastScrollRef.current;
-
-    if (isExpanded) {
-      showNav(0.4);
-    } else if (forceHidden) {
-      hideNav(0.2); // zawsze chowaj, dopóki forceHidden = true
-    } else {
-      if (currentScroll === 0) {
-        showNav(1);
-      } else if (currentScroll > last) {
-        hideNav(1);
-      } else if (currentScroll < last) {
-        showNav(0.6);
-      }
-    }
-
-    lastScrollRef.current = currentScroll;
-  }, [currentScroll, isExpanded, forceHidden]);
-
   const toggleMenu = () => {
     const tl = tlRef.current;
     if (!tl) return;
-
     if (!isExpanded) {
-      // OTWARCIE
       setIsHamburgerOpen(true);
       setIsExpanded(true);
-      setForceHidden(false); // reset blokady
-      showNav(0.3);
       tl.play(0);
     } else {
-      // ZAMKNIĘCIE
       setIsHamburgerOpen(false);
       setOpenDropdown(false);
-      setIsExpanded(false);
-      setForceHidden(true); // blokada widoczności
-      tl.reverse(0);
-      hideNav(0.5);
+      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+      tl.reverse();
     }
   };
 
@@ -195,19 +190,17 @@ const CardNav: React.FC<CardNavProps> = ({
     if (!tl) return;
     setIsHamburgerOpen(false);
     setOpenDropdown(false);
-    setIsExpanded(false);
-    setForceHidden(true); // blokada widoczności po kliknięciu linku/CTA
-    tl.reverse(0);
-    hideNav(0.5);
+    tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+    tl.reverse();
   };
 
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
   };
 
-  // dropdown
+  // obsługa dropdownu
   const handleMouseEnter = () => {
-    if (isMobile) return;
+    if (isMobile) return; // na mobile nie działa hover
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
       dropdownTimeoutRef.current = null;
@@ -216,13 +209,15 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   const handleMouseLeave = () => {
-    if (isMobile) return;
+    if (isMobile) return; // na mobile nie działa hover
     dropdownTimeoutRef.current = setTimeout(() => {
       setOpenDropdown(false);
     }, 500);
   };
 
-  const toggleDropdown = () => setOpenDropdown((p) => !p);
+  const toggleDropdown = () => {
+    setOpenDropdown((prev) => !prev);
+  };
 
   return (
     <div
@@ -326,6 +321,7 @@ const CardNav: React.FC<CardNavProps> = ({
                       />
                     </button>
                   </div>
+
 
                   {openDropdown && (
                     <div

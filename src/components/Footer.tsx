@@ -13,7 +13,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="py-20">
+      <div className="py-20 pb-10">
         <footer className="relative bg-stone-100 text-white w-[90%] max-w-[1440px] mx-auto z-10 border p-8 rounded-xl shadow-lg">
           {/* Górna sekcja */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 border-b border-blue-900 pb-8">
