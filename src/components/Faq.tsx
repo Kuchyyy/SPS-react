@@ -33,7 +33,7 @@ export default function Faq() {
     <div className="py-20">
       <section
         id="faq"
-        className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white px-6 lg:px-16 py-12 md:py-16 mx-auto overflow-hidden"
+        className="relative w-[90%] max-w-[1440px] my-10 rounded-2xl bg-[#111827] text-white px-4 lg:px-16 py-12 md:py-16 mx-auto overflow-hidden"
       >
         <div className="hidden lg:block">
           <Ripple circleTop="10%" circleLeft="5%" />

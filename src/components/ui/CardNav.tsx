@@ -1,8 +1,8 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { GoArrowUpRight } from 'react-icons/go';
-import { useWindowScroll } from 'react-use';
-import { ChevronDown } from 'lucide-react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { gsap } from "gsap";
+import { GoArrowUpRight } from "react-icons/go";
+import { useWindowScroll } from "react-use";
+import { ChevronDown } from "lucide-react";
 
 type CardNavLink = {
   label: string;
@@ -31,17 +31,18 @@ export interface CardNavProps {
 
 const CardNav: React.FC<CardNavProps> = ({
   logo,
-  logoAlt = 'Logo',
+  logoAlt = "Logo",
   items,
-  className = '',
-  ease = 'power3.out',
-  baseColor = '#fff',
+  className = "",
+  ease = "power3.out",
+  baseColor = "#fff",
   menuColor,
   buttonBgColor,
-  buttonTextColor
+  buttonTextColor,
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
   const { y: currentScroll } = useWindowScroll();
 
@@ -49,56 +50,49 @@ const CardNav: React.FC<CardNavProps> = ({
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
-  // dropdown dla Kontakt
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // sprawdzanie mobile/desktop
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkMobile = () =>
-      setIsMobile(window.matchMedia('(max-width: 640px)').matches);
+      setIsMobile(window.matchMedia("(max-width: 640px)").matches);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // startowo navbar poza ekranem
   useLayoutEffect(() => {
     if (!navRef.current) return;
     gsap.set(navRef.current, { y: -120 });
   }, []);
 
-  // logika chowająca / pokazująca navbar przy scrollu
+
   useEffect(() => {
-    if (!navRef.current) return;
+    if (!navRef.current || isExpanded) return;
 
-    if (isExpanded) {
-      gsap.to(navRef.current, { y: 0, duration: 0.4, ease: 'power3.out' });
-      return;
-    }
-
-    if (currentScroll === 0) {
-      gsap.to(navRef.current, { y: 0, duration: 1, ease: 'power3.out' });
+    if (currentScroll <= 0) {
+      gsap.to(navRef.current, { y: 0, duration: 2, ease: "power3.out" });
     } else if (currentScroll > lastScroll) {
-      gsap.to(navRef.current, { y: -120, duration: 1, ease: 'power3.out' });
+      gsap.to(navRef.current, { y: -120, duration: 2, ease: "power3.out" });
     } else if (currentScroll < lastScroll) {
-      gsap.to(navRef.current, { y: 0, duration: 3, ease: 'power3.out' });
+      gsap.to(navRef.current, { y: 0, duration: 2, ease: "power3.out" });
     }
 
     setLastScroll(currentScroll);
   }, [currentScroll, lastScroll, isExpanded]);
 
-  // animacja kart – wysokość tylko karty (dropdown ignorujemy)
   const calculateHeight = () => {
     const navEl = navRef.current;
     if (!navEl) return 60;
 
-    const cards = navEl.querySelectorAll('.nav-card') as NodeListOf<HTMLElement>;
+    const cards = navEl.querySelectorAll(
+      ".nav-card"
+    ) as NodeListOf<HTMLElement>;
     if (cards.length > 0) {
       const isMobileView =
-        typeof window !== 'undefined' &&
-        window.matchMedia('(max-width: 640px)').matches;
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 640px)").matches;
 
       if (isMobileView) {
         const sumCardHeights = Array.from(cards).reduce(
@@ -114,7 +108,6 @@ const CardNav: React.FC<CardNavProps> = ({
         return 60 + maxCardHeight + 16;
       }
     }
-
     return 60;
   };
 
@@ -122,7 +115,7 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: 'visible' });
+    gsap.set(navEl, { height: 60, overflow: "visible" });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -131,7 +124,7 @@ const CardNav: React.FC<CardNavProps> = ({
     tl.to(
       cardsRef.current,
       { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 },
-      '-=0.1'
+      "-=0.1"
     );
 
     return tl;
@@ -146,51 +139,41 @@ const CardNav: React.FC<CardNavProps> = ({
     };
   }, [ease, items]);
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      if (!tlRef.current) return;
-      if (isExpanded) {
-        const newHeight = calculateHeight();
-        gsap.set(navRef.current, { height: newHeight });
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          newTl.progress(1);
-          tlRef.current = newTl;
-        }
-      } else {
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          tlRef.current = newTl;
-        }
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isExpanded]);
-
   const toggleMenu = () => {
+    if (isAnimating) return; 
     const tl = tlRef.current;
     if (!tl) return;
+
     if (!isExpanded) {
+      setIsAnimating(true);
       setIsHamburgerOpen(true);
       setIsExpanded(true);
+      tl.eventCallback("onComplete", () => setIsAnimating(false));
       tl.play(0);
     } else {
+      setIsAnimating(true);
       setIsHamburgerOpen(false);
       setOpenDropdown(false);
-      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+      tl.eventCallback("onReverseComplete", () => {
+        setIsExpanded(false);
+        setIsAnimating(false);
+      });
       tl.reverse();
     }
   };
 
   const closeMenu = () => {
+    if (isAnimating) return;
     const tl = tlRef.current;
     if (!tl) return;
+
+    setIsAnimating(true);
     setIsHamburgerOpen(false);
     setOpenDropdown(false);
-    tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
+    tl.eventCallback("onReverseComplete", () => {
+      setIsExpanded(false);
+      setIsAnimating(false);
+    });
     tl.reverse();
   };
 
@@ -198,9 +181,8 @@ const CardNav: React.FC<CardNavProps> = ({
     if (el) cardsRef.current[i] = el;
   };
 
-  // obsługa dropdownu
   const handleMouseEnter = () => {
-    if (isMobile) return; // na mobile nie działa hover
+    if (isMobile) return;
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
       dropdownTimeoutRef.current = null;
@@ -209,7 +191,7 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   const handleMouseLeave = () => {
-    if (isMobile) return; // na mobile nie działa hover
+    if (isMobile) return;
     dropdownTimeoutRef.current = setTimeout(() => {
       setOpenDropdown(false);
     }, 500);
@@ -225,40 +207,42 @@ const CardNav: React.FC<CardNavProps> = ({
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-visible will-change-[height,transform]`}
+        className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-md relative overflow-visible will-change-[height,transform]`}
         style={{ backgroundColor: baseColor }}
       >
-        {/* TOP BAR */}
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2] pr-4 md:pr-2">
-          {/* hamburger */}
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
+            className={`hamburger-menu ${
+              isHamburgerOpen ? "open" : ""
+            } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
             role="button"
-            aria-label={isExpanded ? 'Close menu' : 'Open menu'}
+            aria-label={isExpanded ? "Close menu" : "Open menu"}
             tabIndex={0}
-            style={{ color: menuColor || '#000' }}
+            style={{ color: menuColor || "#000" }}
           >
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-current transition-all duration-300 ${
-                isHamburgerOpen ? 'translate-y-[4px] rotate-45' : ''
+                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
               }`}
             />
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-current transition-all duration-300 ${
-                isHamburgerOpen ? '-translate-y-[4px] -rotate-45' : ''
+                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
               }`}
             />
           </div>
 
-          {/* logo */}
           <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
             <a href="/" onClick={() => window.scrollTo(0, 0)}>
-              <img src={logo} alt={logoAlt} className="logo h-[28px] cursor-pointer" />
+              <img
+                src={logo}
+                alt={logoAlt}
+                className="logo h-[28px] cursor-pointer"
+              />
             </a>
           </div>
 
-          {/* CTA */}
           <button
             type="button"
             onClick={closeMenu}
@@ -269,10 +253,9 @@ const CardNav: React.FC<CardNavProps> = ({
           </button>
         </div>
 
-        {/* CONTENT */}
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] p-2 flex flex-col sm:flex-row gap-2 z-[1] ${
-            isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
+            isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"
           }`}
           aria-hidden={!isExpanded}
         >
@@ -283,7 +266,7 @@ const CardNav: React.FC<CardNavProps> = ({
               ref={setCardRef(idx)}
               style={{ backgroundColor: item.bgColor, color: item.textColor }}
             >
-              {item.label !== 'Kontakt' ? (
+              {item.label !== "Kontakt" ? (
                 <a
                   href={`#${item.label.toLowerCase()}`}
                   onClick={closeMenu}
@@ -305,7 +288,6 @@ const CardNav: React.FC<CardNavProps> = ({
                     >
                       {item.label}
                     </a>
-
                     <button
                       type="button"
                       onClick={(e) => {
@@ -316,17 +298,18 @@ const CardNav: React.FC<CardNavProps> = ({
                     >
                       <ChevronDown
                         className={`w-5 h-5 transition-transform duration-300 ${
-                          openDropdown ? 'rotate-180' : ''
+                          openDropdown ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                   </div>
-
-
                   {openDropdown && (
                     <div
                       className="absolute left-0 top-full mt-8 flex flex-col bg-white shadow-lg rounded-md p-2 z-50"
-                      style={{ width: 'calc(100% + 2rem)', transform: 'translateX(-1rem)' }}
+                      style={{
+                        width: "calc(100% + 2rem)",
+                        transform: "translateX(-1rem)",
+                      }}
                     >
                       {item.links?.map((lnk) => (
                         <a
