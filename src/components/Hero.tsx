@@ -16,10 +16,17 @@ const Hero = () => {
   const [introDone, setIntroDone] = useState(false)
 
   useEffect(() => {
+
+
     if (overlayRef.current) {
-      const tl = gsap.timeline({
-        onComplete: () => setIntroDone(true),
-      })
+    document.body.style.overflow = "hidden"
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setIntroDone(true)
+        document.body.style.overflow = "auto"
+      },
+    })
 
       tl.fromTo(
         overlayRef.current.querySelector("img"),

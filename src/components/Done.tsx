@@ -14,7 +14,7 @@ const projects = [
     title: "SULAGRA",
     desc: "Modernizacja instalacji przemysłowych i oświetlenia hal produkcyjnych w zakładach Sulagry – od projektu po uruchomienie.",
     img: "/photos/cos3.png",
-    video: "/films/sulagra.",
+    video: "/films/sulagra.mp4",
   },
   {
     title: "JELFA",
