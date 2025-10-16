@@ -67,14 +67,19 @@ const Message: React.FC = () => {
       <div className="max-w-[1440px] w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
         {/* Lewa kolumna */}
         <div className="flex flex-col h-full gap-6">
-            <div className="flex flex-col mx-auto text-center md:mx-0 md:text-left sm:items-start">
-                <h2 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 uppercase">
-                    Główna siedziba <br /> SPS Elektro
-                </h2>
+            <div className="flex flex-col mx-auto text-center md:mx-0 md:text-left md:items-start md:ml-2 ml-0">
+              <h2 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 uppercase">
+                Główna siedziba <br /> SPS Elektro
+              </h2>
+              <p className="mt-4 text-gray-600 max-w-3xl text-lg font-satoshi-medium">
+                Jeśli nie wiesz do kogo napisać, skontaktuj się z nami poprzez
+                formularz, a nasz zespół się do Ciebie odezwie.
+              </p>
             </div>
 
+
           {/* ✅ Biały box-kontener */}
-          <div className="bg-white shadow-md rounded-xl p-6 flex flex-col gap-4 h-full justify-between">
+          <div className="bg-white shadow-md rounded-xl p-2 py-6 md:p-6 flex flex-col gap-4 h-full justify-between">
             <div>
                 {/* Logo */}
                 <div className="flex justify-center">
