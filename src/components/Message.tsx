@@ -79,7 +79,7 @@ const Message: React.FC = () => {
 
 
           {/* ✅ Biały box-kontener */}
-          <div className="bg-white shadow-md rounded-xl p-2 py-6 md:p-6 flex flex-col gap-4 h-full justify-between">
+          <div className="bg-white shadow-md rounded-xl p-4 py-6 md:p-6 flex flex-col gap-4 h-full justify-between">
             <div>
                 {/* Logo */}
                 <div className="flex justify-center">
@@ -126,7 +126,7 @@ const Message: React.FC = () => {
         </div>
 
         {/* Prawa kolumna – formularz */}
-        <div className="bg-white shadow-md rounded-xl p-8 flex flex-col h-full">
+        <div className="bg-white shadow-md rounded-xl p-4 flex flex-col h-full">
           <h2 className="text-2xl font-satoshi uppercase text-gray-900 mb-6">
             Formularz kontaktowy
           </h2>
@@ -167,37 +167,44 @@ const Message: React.FC = () => {
               className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-900 outline-none flex-1 font-robert-medium"
             ></textarea>
 
-            {/* ✅ Checkboxy */}
-            <label className="flex items-center gap-2 text-sm text-gray-700">
-              <input
-                type="checkbox"
-                name="privacy"
-                checked={form.privacy}
-                onChange={handleChange}
-                className="w-4 h-4"
-              />
-              Zapoznałem się z{" "}
-              <a
-                href="/polityka-prywatnosci"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-900 underline"
-              >
-                polityką prywatności
-              </a>
-              .
-            </label>
+            {/* Checkboxy */}
+            <div className="flex flex-col gap-3">
+              <label className="flex items-start gap-3 text-sm text-gray-700 bg-stone-100 rounded-lg p-3 w-full min-h-[60px]">
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  checked={form.privacy}
+                  onChange={handleChange}
+                  className="mt-1 w-4 h-4 flex-shrink-0"
+                />
+                <span>
+                  Zapoznałem się z{" "}
+                  <a
+                    href="/polityka-prywatnosci"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-900 underline"
+                  >
+                    polityką prywatności
+                  </a>
+                  .
+                </span>
+              </label>
 
-            <label className="flex items-center gap-2 text-sm text-gray-700">
-              <input
-                type="checkbox"
-                name="consent"
-                checked={form.consent}
-                onChange={handleChange}
-                className="w-4 h-4"
-              />
-              Wyrażam zgodę na kontakt w celu odpowiedzi na wiadomość.
-            </label>
+              <label className="flex items-start gap-3 text-sm text-gray-700 bg-stone-100 rounded-lg p-3 w-full min-h-[60px]">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={form.consent}
+                  onChange={handleChange}
+                  className="mt-1 w-4 h-4 flex-shrink-0"
+                />
+                <span>
+                  Wyrażam zgodę na kontakt w celu odpowiedzi na wiadomość.
+                </span>
+              </label>
+            </div>
+
 
             <button
               type="submit"
