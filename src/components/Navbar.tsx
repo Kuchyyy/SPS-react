@@ -23,7 +23,8 @@ const Navbar = () => {
       links: [
         { label: "Telefon", href: "tel:+48 666 011 919", ariaLabel: "Kontakt Formularz" },
         { label: "Email", href: "mailto:kontakt@firma.com", ariaLabel: "Kontakt Email" },
-        { label: "Linkedin", href:"https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl", ariaLabel: "LinkedIn" }
+        { label: "Linkedin", href:"https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl", ariaLabel: "LinkedIn" },
+        { label: "Formularz", href: "#formularz", ariaLabel: "Kontakt przez Formularz" }
       ]
     }
   ];

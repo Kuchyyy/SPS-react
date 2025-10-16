@@ -3,6 +3,7 @@ import Done from "./components/Done";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import Message from "./components/Message";
 import Navbar from "./components/Navbar";
 import Offer from "./components/Offer";
 import Trust from "./components/Trust";
@@ -21,6 +22,7 @@ function App() {
       <Trust />
       <Done />
       <Contact />
+      <Message />
       <Faq />
       <Footer />
     </>

@@ -23,7 +23,7 @@ const Trust = () => {
             Nasze innowacyjne rozwiązania gwarantują stabilność i bezpieczeństwo każdej inwestycji.
           </p>
           <a
-            href="#"
+             href="tel:+48666011919"
             className="inline-block bg-blue-900 hover:bg-[#005494] px-6 py-3 rounded-lg font-robert-medium transition-colors w-[90%] sm:w-auto"
           >
             Zadzwoń 

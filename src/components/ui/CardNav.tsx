@@ -244,13 +244,17 @@ const CardNav: React.FC<CardNavProps> = ({
           </div>
 
           <button
-            type="button"
-            onClick={closeMenu}
-            className="hidden md:inline-flex border-0 rounded-lg px-4 h-full nav-card-label font-robert-medium cursor-pointer transition-colors duration-300 items-center uppercase"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-          >
-            Kontakt
+              type="button"
+              onClick={() => {
+                closeMenu();
+                document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="hidden md:inline-flex border-0 rounded-lg px-4 h-full nav-card-label font-robert-medium cursor-pointer transition-colors duration-300 items-center uppercase"
+              style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+            >
+              Kontakt
           </button>
+
         </div>
 
         <div
