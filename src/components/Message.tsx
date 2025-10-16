@@ -109,7 +109,7 @@ const Message: React.FC = () => {
                     <div className="bg-stone-100 rounded-lg p-4 shadow-sm hover:shadow-md transition flex items-center gap-2 font-robert-medium">
                     <Landmark className="w-5 h-5 text-blue-900" />
                     <span>
-                        <strong>KRS:</strong> 0000123456
+                        <strong>KRS:</strong> 0000973660
                     </span>
                     </div>
 
@@ -117,7 +117,7 @@ const Message: React.FC = () => {
                     <div className="bg-stone-100 rounded-lg p-4 shadow-sm hover:shadow-md transition flex items-center gap-2 font-robert-medium">
                     <FileText className="w-5 h-5 text-blue-900" />
                     <span>
-                        <strong>NIP:</strong> 123-456-78-90
+                        <strong>NIP:</strong> 8943188010
                     </span>
                 </div>
             </div>
@@ -126,10 +126,11 @@ const Message: React.FC = () => {
         </div>
 
         {/* Prawa kolumna – formularz */}
-        <div className="bg-white shadow-md rounded-xl p-4 flex flex-col h-full">
+        <div className="relative bg-white shadow-md rounded-xl p-4 flex flex-col h-full overflow-hidden">
           <h2 className="text-2xl font-satoshi uppercase text-gray-900 mb-6">
             Formularz kontaktowy
           </h2>
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 flex-1">
             <input
               type="text"
@@ -205,7 +206,6 @@ const Message: React.FC = () => {
               </label>
             </div>
 
-
             <button
               type="submit"
               className="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-[#005494] transition mt-4 font-robert-medium"
@@ -214,13 +214,22 @@ const Message: React.FC = () => {
             </button>
           </form>
 
-          {/* ✅ status, który znika po 3s */}
           {status && (
             <p className="mt-4 text-sm text-gray-700 font-medium transition-opacity duration-500">
               {status}
             </p>
           )}
+
+          {/* 🔥 Overlay z efektem szkła */}
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-20">
+            <p className="text-grey-900 text-xl font-robert-medium text-center px-4 uppercase">
+              Wkrótce zostanie dodany
+              <br />
+              formularz kontaktowy
+            </p>
+          </div>
         </div>
+
       </div>
     </section>
   );
