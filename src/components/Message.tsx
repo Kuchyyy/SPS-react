@@ -222,7 +222,7 @@ const Message: React.FC = () => {
 
           {/* 🔥 Overlay z efektem szkła */}
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-20">
-            <p className="text-grey-900 text-xl font-robert-medium text-center px-4 uppercase">
+            <p className="text-grey-900 text-xl font-satoshi text-center px-4 uppercase">
               Wkrótce zostanie dodany
               <br />
               formularz kontaktowy

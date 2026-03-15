@@ -1,57 +1,22 @@
-/* fonts.css */
-@font-face {
-  font-family: 'satoshi';
-  src: url('/fonts/Satoshi-Black.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-}
 
 @font-face {
-  font-family: 'satoshi-medium';
-  src: url('/fonts/Satoshi-medium.woff2') format('woff2');
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'general';
-  src: url('/fonts/general.woff2') format('woff2');
-  font-weight: 400;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'general';
-  src: url('/fonts/general.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "robert-medium";
-  src: url('/fonts/robert-medium.woff2') format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "robert-medium";
-  src: url('/fonts/robert-medium.woff2') format("woff2");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "robert-regular";
-  src: url('/fonts/robert-regular.woff2') format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "robert-regular";
-  src: url('/fonts/robert-regular.woff2') format("woff2");
-  font-weight: 800;
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -70,17 +35,23 @@ html {
   scroll-behavior: smooth;
 }
 
+@utility maxw {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
 
 @theme {
-  --font-satoshi: 'satoshi', sans-serif;
-  --font-satoshi-medium: 'satoshi-medium', sans-serif;
-  --font-general: 'general', sans-serif;
-  --font-robert-medium: 'robert-medium', sans-serif;
-  --font-robert-regular: 'robert-regular', sans-serif;
+
+  --font-poppins: 'Poppins', sans-serif;
+  --font-host-grotesk: "Host Grotesk", sans-serif;
 }
 
 @theme inline {
   --color-blue-900: #00629C;
+  --color-soft-black: #1a1a1a;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -213,6 +184,15 @@ html {
   
   .animate-pulse-ripple {
     animation: pulse-ripple 3s infinite ease-in-out;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
 }
