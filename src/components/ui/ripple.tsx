@@ -11,16 +11,20 @@ interface RippleProps extends ComponentPropsWithoutRef<"div"> {
   children?: ReactNode; // 🔹 dodane
   circleTop?: string
   circleLeft?: string
+  borderColor?: string
+  sizeIncrement?: number
 }
 
 export const Ripple = memo(function Ripple({
   mainCircleSize = 210,
-  mainCircleOpacity = 0.24,
+  mainCircleOpacity = 1,
   numCircles = 10,
   className,
   children, // 🔹 dodane
   circleTop,
   circleLeft,
+  borderColor,
+  sizeIncrement = 70,
   ...props
 }: RippleProps) {
   return (
@@ -33,30 +37,42 @@ export const Ripple = memo(function Ripple({
     >
       {/* Kręgi */}
       {Array.from({ length: numCircles }, (_, i) => {
-        const size = mainCircleSize + i * 70;
+        const size = mainCircleSize + i * sizeIncrement;
         const opacity = mainCircleOpacity - i * 0.03;
         const animationDelay = `${i * 0.06}s`;
 
+        let finalBorderColor: string;
+        if (borderColor) {
+          const rgbMatch = borderColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          if (rgbMatch) {
+            finalBorderColor = `rgba(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]}, ${opacity})`;
+          } else {
+            finalBorderColor = borderColor;
+          }
+        } else {
+          finalBorderColor = `rgba(245, 245, 244, ${opacity})`;
+        }
+
         return (
           <div
-  key={i}
-  className="absolute rounded-full border shadow-xl animate-pulse-ripple"
-  style={
-    {
-      "--i": i,
-      width: `${size}px`,
-      height: `${size}px`,
-      opacity,
-      borderStyle: "solid",
-      borderWidth: "3px",
-      borderColor: `rgba(245, 245, 244, ${opacity})`, // stone-100
-      top: circleTop ?? "90%",
-      left: circleLeft ?? "95%",
-      transform: "translate(-50%, -50%) scale(1)",
-      animationDelay,
-    } as CSSProperties
-  }
-/>
+            key={i}
+            className="absolute rounded-full border shadow-xl animate-pulse-ripple"
+            style={
+              {
+                "--i": i,
+                width: `${size}px`,
+                height: `${size}px`,
+                opacity,
+                borderStyle: "solid",
+                borderWidth: "3px",
+                borderColor: finalBorderColor,
+                top: circleTop ?? "90%",
+                left: circleLeft ?? "95%",
+                transform: "translate(-50%, -50%) scale(1)",
+                animationDelay,
+              } as CSSProperties
+            }
+          />
 
         );
       })}

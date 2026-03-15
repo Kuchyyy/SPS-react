@@ -32,7 +32,7 @@ const Why = () => {
         <div className="flex flex-col gap-1 mb-8">
 
           <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
-            Postaw na doświadczenie
+            Postaw na <br /> doświadczenie
           </h1>
           <p className="text-sm font-poppins text-soft-black/70 leading-relaxed max-w-2xl font-light">
             Skupiamy się na dostarczaniu wartości, która od razu robi różnicę.
