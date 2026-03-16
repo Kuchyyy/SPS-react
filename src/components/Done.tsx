@@ -1,30 +1,21 @@
 
-import { useState, useRef } from "react";
-import { Building2 } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
-
-
+import { useState } from "react";
+import { Play } from "lucide-react";
 const projects = [
   {
-    title: "SULAGRA",
+    title: "Sulagry",
     desc: "Modernizacja instalacji przemysłowych i oświetlenia hal produkcyjnych w zakładach Sulagry – od projektu po uruchomienie.",
     img: "/photos/cos3.png",
     video: "/films/sulagra.mp4",
   },
   {
-    title: "JELFA",
+    title: "Jelfa",
     desc: "Instalacja wydajnych systemów oświetlenia i zasilania w zakładach produkcyjnych Jelfa – zabezpieczenia antyporażeniowe i awaryjne.",
     img: "/photos/cos2.png",
     video: "/films/jelfa.mp4",
   },
   {
-    title: "KOMENDA POLICJI",
+    title: "Komenda Policji",
     desc: "Kompleksowe wykonanie instalacji elektrycznej i systemów zabezpieczeń w nowoczesnym budynku Komendy Policji we Wrocławiu.",
     img: "/photos/cos1.png",
     video: "/films/komendapolicji.mp4",
@@ -32,100 +23,83 @@ const projects = [
 ];
 
 const Done = () => {
-  const [playing, setPlaying] = useState<number | null>(null); 
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  const handlePlay = (i: number) => {
-    videoRefs.current.forEach((vid, idx) => {
-      if (vid && idx !== i) {
-        vid.pause();
-        vid.currentTime = 0;
-      }
-    });
-    setPlaying(i);
-    if (videoRefs.current[i]) {
-      videoRefs.current[i]!.play();
-    }
-  };
-  
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section id="realizacje" className="w-screen py-20 bg-stone-100">
-      <div className="max-w-[1440px] w-[90%] mx-auto">
-        {/* 🔹 Badge */}
-        <div className="mx-auto text-center">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-900 text-white rounded-full text-sm font-semibold shadow-md mx-auto">
-            <Building2 className="w-4 h-4" />
-            REALIZACJE
+    <section id="realizacje" className="w-full bg-stone-100 py-20">
+      <div className="maxw pt-10">
+        <div className="flex flex-col gap-1 mb-6">
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
+              Realizacje
+            </h1>
           </div>
 
-          {/* 🔹 Tytuł + opis */}
-          <h1 className="mt-6 text-3xl md:text-5xl font-satoshi text-gray-900 text-center uppercase">
-            Zobacz co już zrobiliśmy
-          </h1>
-          <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-lg font-satoshi-medium text-center">
-            W ostatnich miesiącach intensywnie pracowaliśmy nad projektami, które
-            nie tylko odzwierciedlają nasze doświadczenie, ale także pasję i
-            zaangażowanie.
-          </p>
-        </div>
-
-        {/* 🔹 Projekty w karuzeli */}
-        <div className="mt-12 relative">
-          <Carousel>
-            <CarouselContent>
-              {projects.map((p, i) => (
-                <CarouselItem key={i} className="md:basis-1/2">
-                  <div className="bg-white rounded-xl shadow-md overflow-hidden aspect-square flex flex-col">
-                    {playing === i ? (
-                      <video
-                        ref={(el) => {
-                          videoRefs.current[i] = el;
-                        }}
-                        src={p.video}
-                        className="w-full h-4/5 object-cover"
-                        preload="auto"
-                        controls
-                        onEnded={() => setPlaying(null)}
-                      />
-                    ) : (
-                      <img
-                        src={p.img}
-                        alt={p.title}
-                        className="w-full h-4/5 object-cover cursor-pointer"
-                        onClick={() => handlePlay(i)}
-                      />
-                    )}
-
-                    <div className="p-3 pb-6 flex-1 flex flex-col justify-between pointer-events-none">
-                      <h3 className="text-lg sm:text-2xl font-robert-medium text-gray-900 uppercase">
-                        {p.title}
-                      </h3>
-                      <p className="mt-0 text-gray-600 text-sm sm:text-base">
-                        {p.desc}
-                      </p>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* 🔹 Nawigacja pod spodem */}
-            <div className="flex gap-3 mt-3 justify-between items-center mr-3">
-              <div className="flex gap-3">
-                <CarouselPrevious />
-                <CarouselNext />
-              </div>
-              <div>
-                <span className="text-gray-600 text-sm font-robert-medium uppercase">
-                  <p className="hidden sm:inline">Przesuń, aby zobaczyć więcej</p>
-                  <p className="sm:hidden">Przesuń</p>
-                </span>
-              </div>
-            </div>
-          </Carousel>
+          <div className="max-w-xl">
+            <p className="text-sm text-soft-black/70 font-poppins font-light tracking-tight">
+              W ostatnich miesiącach intensywnie pracowaliśmy nad projektami, które
+              nie tylko odzwierciedlają nasze doświadczenie, ale także pasję i
+              zaangażowanie.
+            </p>
+          </div>
         </div>
       </div>
+
+      <div className="w-full">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible">
+          {projects.map((p, i) => (
+            <div
+              key={i}
+              className="shrink-0 w-[300px] lg:w-auto rounded-sm overflow-hidden"
+            >
+              <div className="relative aspect-[3/4] w-full rounded-sm bg-neutral-200 overflow-hidden flex items-center justify-center">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="w-full h-full object-cover"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setActiveVideo(p.video)}
+                  className="absolute top-3 right-3 bg-blue-900 hover:bg-[#005494] text-white rounded-full p-2 shadow-md transition-colors"
+                >
+                  <Play className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="py-3 flex flex-col gap-2">
+                <h3 className="text-base  font-poppins tracking-tight text-soft-black">
+                  {p.title}
+                </h3>
+                <p className="text-sm  text-soft-black/60 font-poppins font-light tracking-tight">
+                  {p.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {activeVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="relative w-full max-w-3xl">
+            <button
+              type="button"
+              onClick={() => setActiveVideo(null)}
+              className="absolute -top-10 right-0 text-white text-sm font-poppins"
+            >
+              Zamknij
+            </button>
+            <video
+              src={activeVideo}
+              className="w-full max-h-[80vh] rounded-sm bg-black"
+              controls
+              autoPlay
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
