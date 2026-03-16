@@ -1,9 +1,8 @@
-import  Contact from "./components/Contact";
+import Contact from "./components/Contact";
 import Done from "./components/Done";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import Message from "./components/Message";
 import Navbar from "./components/Navbar";
 import Offer from "./components/Offer";
 import Trust from "./components/Trust";
@@ -15,14 +14,13 @@ function App() {
 
   return (
     <>
-      <Navbar /> 
-      <Hero /> 
+      <Navbar />
+      <Hero />
       <Offer />
       <Why />
       <Trust />
       <Done />
       <Contact />
-      <Message />
       <Faq />
       <Footer />
     </>
