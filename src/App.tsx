@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Offer from "./components/Offer";
 import Trust from "./components/Trust";
 import Why from "./components/Why";
+import Cta from "./components/Cta";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Done />
       <Contact />
       <Faq />
+      <Cta />
       <Footer />
     </>
   )
