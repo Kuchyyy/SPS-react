@@ -60,7 +60,7 @@ export default function Faq() {
             const isOpen = openIndex === index;
 
             return (
-              <div key={index} className="border-b border-black/10">
+              <div key={index} className="border-b border-black/10 pr-4">
                 <button
                   className="w-full flex items-center justify-between py-4 md:py-5 text-left"
                   onClick={() => handleToggle(index)}

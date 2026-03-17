@@ -8,12 +8,12 @@ const Footer = () => {
     setShowBanner(true);
     setTimeout(() => {
       setShowBanner(false);
-    }, 3000); 
+    }, 3000);
   };
 
   return (
     <>
-      <div className="py-20 pb-10">
+      <div className="py-20 pb-10 bg-black">
         <footer className="relative bg-stone-100 text-white w-[90%] max-w-[1440px] mx-auto z-10 border p-8 rounded-xl shadow-lg">
           {/* Górna sekcja */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 border-b border-blue-900 pb-8">
@@ -112,12 +112,12 @@ const Footer = () => {
               <p>© {new Date().getFullYear()} SPS Elektro. Wszelkie prawa zastrzeżone.</p>
 
               <div className="flex items-center gap-1">
-                MADE WITH 
-                <Heart className="w-4 h-4 text-red-500 fill-red-500" /> 
-                BY 
-                <a 
-                  href="https://github.com/Kuchyyy" 
-                  target="_blank" 
+                MADE WITH
+                <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+                BY
+                <a
+                  href="https://github.com/Kuchyyy"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="font-bold transition-colors hover:text-blue-900"
                 >
