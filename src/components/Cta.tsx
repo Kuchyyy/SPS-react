@@ -9,7 +9,7 @@ const Cta = () => {
                             Twoja wizja, <br /> Nasze wykonanie.
                         </h2>
 
-                        <button className="px-6 py-3 bg-white text-black text-sm font-poppins border border-white/20 ">
+                        <button className="px-6 py-3 bg-white text-black text-sm font-poppins border border-white/20 hover:cursor-pointer">
                             Porozmawiajmy o projekcie
                         </button>
                     </div>

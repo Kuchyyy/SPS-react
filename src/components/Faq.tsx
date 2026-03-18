@@ -46,26 +46,34 @@ export default function Faq() {
 
 
   return (
-    <section id="faq" className="w-full bg-stone-100 py-16">
-      <div className="maxw">
-        <div className="flex flex-col gap-1 mb-8">
-          <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
-            Najczęściej zadawane pytania
-          </h1>
+    <section id="faq" className="w-full bg-stone-100">
+      <div className="w-full border-b border-black/20">
+        <div className="maxw">
+          <div className="flex flex-col gap-1 mb-8">
+            <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
+              Najczęściej zadawane pytania
+            </h1>
+            <p className="text-sm font-poppins text-soft-black/70 leading-relaxed max-w-2xl font-light">
+              Zebraliśmy odpowiedzi na pytania, które najczęściej pojawiają się przed rozpoczęciem współpracy.
+            </p>
+          </div>
 
         </div>
+
+      </div>
+      <div className="maxw border-x border-black/20 py-8">
 
         <div className="">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <div key={index} className="border-b border-black/10 pr-4">
+              <div key={index} className="border-b border-black/20 px-6 first:border-t">
                 <button
                   className="w-full flex items-center justify-between py-4 md:py-5 text-left"
                   onClick={() => handleToggle(index)}
                 >
-                  <span className="text-base md:text-lg font-robert-medium text-soft-black pr-6">
+                  <span className="text-base font-robert-medium text-soft-black pr-6">
                     {faq.question}
                   </span>
                   <span
@@ -80,7 +88,7 @@ export default function Faq() {
                   className={`overflow-hidden transition-[max-height] duration-300 ${isOpen ? "max-h-60 md:max-h-96" : "max-h-0"
                     }`}
                 >
-                  <p className="pb-4 md:pb-5 text-sm font-poppins text-soft-black/70 leading-relaxed">
+                  <p className="pb-4 md:pb-5 text-sm font-poppins text-soft-black/60 leading-relaxed max-w-4xl">
                     {faq.answer}
                   </p>
                 </div>

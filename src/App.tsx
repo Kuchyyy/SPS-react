@@ -1,4 +1,4 @@
-import Contact from "./components/Contact";
+
 import Done from "./components/Done";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
@@ -21,7 +21,6 @@ function App() {
       <Why />
       <Trust />
       <Done />
-      <Contact />
       <Faq />
       <Cta />
       <Footer />
