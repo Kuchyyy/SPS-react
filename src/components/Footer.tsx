@@ -1,4 +1,3 @@
-import { Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -110,7 +109,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full bg-neutral-900">
+        <div className="w-full bg-soft-black">
           <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-white/60 font-robert-medium">
             <div className="flex items-center gap-3">
               <a
@@ -121,7 +120,7 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 LinkedIn
-                <Linkedin className="w-4 h-4 fill-white/60 mb-0.5" />
+
               </a>
             </div>
 

@@ -5,6 +5,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Threads from "./Threads"
 import { InfiniteSlider } from "@/components/ui/infinite-slider"
+import { HeroNavbarBar } from "./Navbar"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -107,7 +108,7 @@ const Hero = () => {
         </div>
       )}
 
-      <section className="w-screen bg-stone-100">
+      <section id="hero" className="w-screen bg-stone-100">
         <div
           ref={wrapperRef}
           className="mx-auto h-[96svh] flex flex-col justify-center mt-4"
@@ -116,6 +117,7 @@ const Hero = () => {
             ref={innerRef}
             className="relative rounded-2xl overflow-hidden shadow-lg flex flex-col bg-radial-[at_90%_100%] from-blue-900 to-[#111827] h-full"
           >
+            <HeroNavbarBar />
             <div className="absolute inset-0">
               <Threads
                 amplitude={0.8}

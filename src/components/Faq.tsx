@@ -48,12 +48,12 @@ export default function Faq() {
 
   return (
     <section id="faq" className="w-full bg-stone-100">
-      <div className="w-full border-b border-black/20">
-        <div className="maxw">
+      <div className="w-full border-y border-black/20">
+        <div className="maxw border-x border-black/20 py-8">
 
 
 
-          <div className="flex flex-col gap-1 mb-8">
+          <div className="flex flex-col gap-1 px-6">
             <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
               Najczęściej zadawane pytania
             </h1>

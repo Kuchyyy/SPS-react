@@ -1,164 +1,51 @@
+const SECTION_IMAGE = "/photos/sps.jpeg"
 
 const Cta = () => {
     return (
-        <div className="w-full bg-neutral-900 border-t border-white/20">
-            <div className="maxw border-x border-white/20 py-8">
-                <div className="flex flex-col md:flex-row border-b border-white/20 -mt-0.5">
-                    <div className="w-full md:w-1/2 min-h-96 border-t border-white/20 flex flex-col items-start justify-center gap-8 px-8 md:px-16 text-center">
-                        <h2 className="text-3xl md:text-4xl font-poppins text-start w-full tracking-tight text-white">
-                            Twoja wizja, <br /> Nasze wykonanie.
-                        </h2>
+        <section className="relative isolate flex min-h-[min(80svh,920px)] flex-col overflow-hidden">
+            <div
+                className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('/photos/bg2.png')" }}
+                aria-hidden
+            />
 
-                        <button className="px-6 py-3 bg-white text-black text-sm font-poppins border border-white/20 hover:cursor-pointer">
-                            Porozmawiajmy o projekcie
-                        </button>
+            <div className="relative z-10 flex w-full flex-1 flex-col justify-between px-5 pt-10 md:maxw">
+                <p className="text-xs font-poppins tracking-wide uppercase text-white">
+                    Współpraca
+                </p>
+
+                <div className="mt-16 flex flex-col gap-14 md:mt-0 md:flex-row md:items-end md:justify-between md:gap-8 lg:gap-4">
+                    <div className="flex max-w-xl flex-col gap-8 md:max-w-[min(100%,28rem)] lg:max-w-lg lg:pb-2">
+                        <div className="flex flex-col gap-1">
+                            <h2 className="text-3xl font-poppins tracking-tight text-white md:text-4xl">
+                                Twoja wizja, <br /> Nasze wykonanie.
+                            </h2>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-6 pb-10">
+                            <button
+                                type="button"
+                                className="inline-flex items-center justify-center px-6 py-3 bg-white text-black text-sm font-poppins border border-white/20 transition hover:cursor-pointer hover:bg-white/95"
+                            >
+                                Porozmawiajmy o projekcie
+                            </button>
+                        </div>
                     </div>
-                    <div className="w-full md:w-1/2 relative min-h-96">
-                        <div
-                            className="absolute inset-0 pointer-events-none opacity-80 [background-position:-1px_0] md:[background-position:0_0]"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(to right, rgba(255,255,255,0.20) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.20) 1px, transparent 1px)",
-                                backgroundSize:
-                                    "calc(100% / 6) calc(100% / 12)",
-                            }}
-                        />
-                        <svg
-                            className="absolute -top-5 inset-0 w-full h-full pointer-events-none"
-                            viewBox="0 0 500 500"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <defs>
-                                <pattern
-                                    id="topWallPattern"
-                                    width="6"
-                                    height="6"
-                                    patternUnits="userSpaceOnUse"
-                                    patternTransform="rotate(150)"
-                                >
-                                    <line
-                                        x1="0"
-                                        y1="0"
-                                        x2="0"
-                                        y2="40"
-                                        stroke="rgba(30,58,138,0.55)"
-                                        strokeWidth="5"
-                                    />
-                                </pattern>
-                                <marker
-                                    id="arrowX"
-                                    markerWidth="10"
-                                    markerHeight="10"
-                                    refX="9"
-                                    refY="3"
-                                    orient="auto"
-                                    markerUnits="strokeWidth"
-                                >
-                                    <path d="M0,0 L0,6 L9,3 z" fill="rgba(255,255,255,0.9)" />
-                                </marker>
-                                <marker
-                                    id="arrowY"
-                                    markerWidth="10"
-                                    markerHeight="10"
-                                    refX="9"
-                                    refY="3"
-                                    orient="auto"
-                                    markerUnits="strokeWidth"
-                                >
-                                    <path d="M0,0 L0,6 L9,3 z" fill="rgba(255,255,255,0.9)" />
-                                </marker>
-                                <marker
-                                    id="arrowZ"
-                                    markerWidth="10"
-                                    markerHeight="10"
-                                    refX="9"
-                                    refY="3"
-                                    orient="auto"
-                                    markerUnits="strokeWidth"
-                                >
-                                    <path d="M0,0 L0,6 L9,3 z" fill="rgba(255,255,255,0.9)" />
-                                </marker>
-                            </defs>
 
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="60"
-                                y2="414"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2.5"
-                                markerEnd="url(#arrowX)"
-                            />
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="440"
-                                y2="414"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2.5"
-                                markerEnd="url(#arrowY)"
-                            />
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="250"
-                                y2="120"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2.5"
-                                markerEnd="url(#arrowZ)"
-                            />
-
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="150"
-                                y2="360"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2"
-                            />
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="350"
-                                y2="360"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2"
-                            />
-                            <line
-                                x1="250"
-                                y1="300"
-                                x2="250"
-                                y2="200"
-                                stroke="rgba(255,255,255,1)"
-                                strokeWidth="2"
-                            />
-
-                            <polygon
-                                points="250,200 150,260 250,320 350,260"
-                                fill="rgba(30,58,138,0.18)"
-                                stroke="rgba(30,58,138,0.75)"
-                                strokeWidth="2"
-                                strokeLinejoin="round"
-                            />
-                            <polygon
-                                points="150,360 250,420 250,320 150,260"
-                                fill="url(#topWallPattern)"
-                                stroke="rgba(30,58,138,0.75)"
-                                strokeWidth="2"
-                                strokeLinejoin="round"
-                            />
-                            <polygon
-                                points="350,360 250,420 250,320 350,260"
-                                fill="rgba(30,58,138,0.92)"
-                                stroke="rgba(30,58,138,0.75)"
-                                strokeWidth="2"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                    <div className="relative -mx-5 min-h-[200px] w-[calc(100%+2.5rem)] shrink-0 sm:-mx-5 md:mx-0 md:ml-auto md:w-[min(58vw,520px)] lg:w-[min(50vw,580px)]">
+                        <div className="w-[118%] max-w-none translate-x-[8%] sm:translate-x-[12%] md:w-[125%] md:translate-x-[18%] lg:translate-x-[22%]">
+                            <div className="aspect-[4/3] w-full overflow-hidden rounded-tl-sm shadow-[0_32px_64px_rgba(0,0,0,0.45)] md:aspect-[5/4] md:max-h-[min(52vh,440px)] md:max-w-none">
+                                <img
+                                    src={SECTION_IMAGE}
+                                    alt="SPS Elektro — realizacja"
+                                    className="h-full w-full object-cover object-center"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 
