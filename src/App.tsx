@@ -20,10 +20,9 @@ function App() {
       <Hero />
       <Offer />
       <Why />
-      <Trust />
       <New />
+      <Trust />
       <Done />
-
       <Cta />
       <Footer />
     </>

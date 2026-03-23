@@ -1,6 +1,6 @@
 
 const SECTION_BG = "/photos/bg.png"
-const SECTION_IMAGE = "/photos/sps.jpeg"
+const SECTION_IMAGE = "/photos/sciana.png"
 
 const LINKEDIN_URL = "https://www.linkedin.com/company/sps-elektro"
 const CTA_HREF = "#oferta"

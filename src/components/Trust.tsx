@@ -64,7 +64,7 @@ const Trust = () => {
   }, [hasAnimated]);
 
   return (
-    <section className="w-full bg-stone-100 mb-20">
+    <section className="w-full bg-stone-100 mt-20">
       <div className="flex flex-col gap-1 mb-8 maxw">
         <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
           Budujemy Twój sukces

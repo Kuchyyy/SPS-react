@@ -109,14 +109,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full bg-soft-black">
-          <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-white/60 font-robert-medium">
+        <div className="w-full bg-neutral-100">
+          <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-soft-black/60 font-poppins border-t border-soft-black/20">
             <div className="flex items-center gap-3">
               <a
                 href="https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex font-poppins font-light text-xs items-end gap-2 hover:text-white transition"
+                className="inline-flex font-poppins font-light text-xs items-end gap-2 hover:text-soft-black transition"
                 aria-label="LinkedIn"
               >
                 LinkedIn
@@ -126,7 +126,7 @@ const Footer = () => {
 
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 font-poppins font-light text-xs">
               <p className="text-center">© 2026 spselektro Wszelkie prawa zastrzeżone.</p>
-              <a href="#" className="hover:text-white transition">
+              <a href="#" className="hover:text-soft-black transition">
                 Polityka prywatności
               </a>
 

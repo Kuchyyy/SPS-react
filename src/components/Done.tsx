@@ -45,14 +45,47 @@ const Done = () => {
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-8">
         <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible">
           {projects.map((p, i) => (
             <div
               key={i}
-              className="shrink-0 w-[300px] lg:w-auto rounded-sm overflow-hidden"
+              className="shrink-0 w-[300px] lg:w-auto  overflow-hidden"
             >
-              <div className="relative aspect-[3/4] w-full rounded-sm bg-neutral-200 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[3/4] w-full  bg-neutral-200 overflow-hidden flex items-center justify-center">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="w-full h-full object-cover"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setActiveVideo(p.video)}
+                  className="absolute top-3 right-3 bg-blue-900 hover:bg-[#005494] text-white rounded-full p-2 shadow-md transition-colors"
+                >
+                  <Play className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="py-3 flex flex-col gap-2">
+                <h3 className="text-base  font-poppins tracking-tight text-soft-black">
+                  {p.title}
+                </h3>
+                <p className="text-sm  text-soft-black/60 font-poppins font-light tracking-tight">
+                  {p.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible">
+          {projects.map((p, i) => (
+            <div
+              key={i}
+              className="shrink-0 w-[300px] lg:w-auto overflow-hidden"
+            >
+              <div className="relative aspect-[3/4] w-full bg-neutral-200 overflow-hidden flex items-center justify-center">
                 <img
                   src={p.img}
                   alt={p.title}
