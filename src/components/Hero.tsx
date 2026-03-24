@@ -1,4 +1,133 @@
+import React from "react"
+import AutoScroll from "embla-carousel-auto-scroll"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
 import IphoneMockup from "./iphoneMockup"
+
+
+export type HeroTechnology = {
+  id: string
+  name: string
+  logoSrc?: string
+  mt?: string
+  scale?: string
+}
+
+const HERO_TECHNOLOGIES: HeroTechnology[] = [
+  {
+    id: "siemens",
+    name: "Siemens",
+    logoSrc:
+      "https://akson.com.pl/wp-content/uploads/2022/12/siemens-logo-dax.png",
+    scale: "origin-center scale-90",
+  },
+  {
+    id: "bosch",
+    name: "Bosch",
+    logoSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bosch_logo.png",
+    scale: "origin-center scale-90",
+  },
+  {
+    id: "eaton",
+    name: "Eaton",
+    logoSrc:
+      "https://www.wesco.com/content/dam/wesco/assets/logos/brands/Eaton-logo_300x175.png",
+    scale: "origin-center scale-90",
+  },
+  {
+    id: "philips",
+    name: "Philips Signify",
+    logoSrc:
+      "https://www.signify.com/content/dam/signify/master/homepage/logo-philips.png",
+    scale: "origin-center scale-110",
+  },
+  {
+    id: "schneider",
+    name: "Schneider Electric",
+    logoSrc: "https://no-el.pl/wp-content/uploads/2018/03/SCHNEIDER-ELECTRIC-logo.png",
+    scale: "origin-center scale-90",
+  },
+  {
+    id: "abb",
+    name: "ABB",
+    logoSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/ABB_logo.svg/1280px-ABB_logo.svg.png",
+    scale: "origin-center scale-70",
+  },
+  {
+    id: "hager",
+    name: "Hager",
+    logoSrc: "https://e7.pngegg.com/pngimages/654/491/png-clipart-logo-hager-group-elmassan-holm-airbus-middle-east-blue-text.png",
+    scale: "origin-center scale-90",
+  },
+]
+
+const HeroTechnologiesStrip = ({ items }: { items: HeroTechnology[] }) => {
+  const autoScroll = React.useRef(
+    AutoScroll({
+      speed: 1.0,
+      stopOnInteraction: false,
+    })
+  )
+
+  return (
+    <div
+      className="mt-10 flex w-full flex-col gap-6 lg:flex-row lg:items-center lg:gap-10"
+      role="region"
+      aria-label="Technologie i partnerzy"
+    >
+      <div className="shrink-0 text-left lg:max-w-[11rem] lg:border-r lg:border-soft-black/15 lg:pr-10">
+        <p className="text-[11px] font-poppins uppercase leading-snug  text-soft-black/60 sm:text-xs">
+          Technologie <br /> najwyższej jakości
+        </p>
+      </div>
+
+      <div className="relative flex min-w-0 flex-1 justify-center overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-neutral-100 via-neutral-100/70 to-transparent sm:w-14 lg:hidden" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-neutral-100 via-neutral-100/70 to-transparent sm:w-14" />
+
+        <Carousel
+          opts={{
+            loop: true,
+            align: "start",
+          }}
+          plugins={[autoScroll.current]}
+          className="w-full max-w-[1000px] mask-x-from-75% mask-x-to-95%"
+        >
+          <CarouselContent className="items-center">
+            {[...items, ...items].map((tech, index) => (
+              <CarouselItem
+                key={`${tech.id}-${index}`}
+                className="flex basis-1/2 justify-center md:basis-1/5"
+              >
+                <div
+                  className={`flex h-10 w-32 items-end justify-center sm:h-12 sm:w-40 ${tech.mt ?? ""}`}
+                >
+                  {tech.logoSrc ? (
+                    <img
+                      src={tech.logoSrc}
+                      alt={tech.name}
+                      className={`h-full w-[100px] object-contain transition sm:opacity-60 sm:grayscale sm:hover:opacity-100 sm:hover:grayscale-0 ${tech.scale ?? ""}`}
+                      loading="lazy"
+                      draggable={false}
+                    />
+                  ) : (
+                    <span className="text-center text-[11px] font-poppins font-medium tracking-tight text-soft-black/70 sm:text-xs">
+                      {tech.name}
+                    </span>
+                  )}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
+    </div>
+  )
+}
 
 const Hero = () => {
   const LINKEDIN_URL =
@@ -6,13 +135,13 @@ const Hero = () => {
 
   return (
     <section id="hero" className="w-screen bg-neutral-100">
-      <div className="maxw flex flex-col pb-12 pt-16 md:pt-20">
-        <h1 className="max-w-3xl text-3xl font-poppins tracking-tight leading-tight text-soft-black md:text-6xl">
-          Kompleksowe instalacje dla inwestycji
+      <div className="maxw flex flex-col pb-12 pt-30">
+        <h1 className="max-w-3xl text-3xl font-poppins tracking-tight leading-tight text-soft-black md:text-4xl">
+          Instalacje elektryczne i <br /> teletechnika dla firm
         </h1>
-        <p className="mt-4 max-w-2xl text-sm font-poppins font-light tracking-tight leading-relaxed text-soft-black/70 md:text-base">
-          Łączymy branżę elektryczną, sanitarną i PPOŻ w jedną, sprawnie
-          zarządzaną realizację od projektu po serwis.
+        <p className="mt-2 max-w-2xl text-sm font-poppins font-light tracking-tight  text-soft-black/70 md:text-base">
+          Kompleksowe wsparcie techniczne dla Twojego obiektu. Projektujemy, montujemy i serwisujemy
+          systemy, które napędzają nowoczesną infrastrukturę biznesową.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -20,22 +149,24 @@ const Hero = () => {
             href="tel:+48666011919"
             className="inline-flex items-center justify-center bg-white px-6 py-3 text-sm font-poppins text-black border border-soft-black/15 transition hover:cursor-pointer hover:bg-white/95"
           >
-            Zadzwoń
+            Porozmawiajmy o projekcie
           </a>
           <a
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-soft-black/65 font-poppins font-light tracking-tight transition hover:text-soft-black border border-soft-black/15 px-6 py-3"
+            className="inline-flex bg-blue-800 items-center gap-2 text-sm text-white/90 font-poppins font-light tracking-tight transition hover:text-white border border-soft-black/15 px-6 py-3"
           >
             LinkedIn
           </a>
         </div>
 
+        <HeroTechnologiesStrip items={HERO_TECHNOLOGIES} />
+
         <div className="mt-12 flex flex-col gap-4 md:flex-row">
           <article className="overflow-hidden border border-soft-black/10 bg-white md:w-[42%] md:shrink-0 md:self-stretch">
             <img
-              src="/photos/sps.jpeg"
+              src="/photos/hero.png"
               alt="Realizacja SPS Elektro"
               className="h-full w-full object-cover object-center"
               loading="lazy"
@@ -74,15 +205,59 @@ const Hero = () => {
               </div>
             </article>
 
-            <article className="flex-1 border border-white/10 bg-[#101214] p-6 md:p-7">
-              <p className="text-xs uppercase tracking-wide text-white/40 font-poppins">
-                Raport realizacji
-              </p>
-              <p className="mt-3 max-w-xl text-sm text-white/80 font-poppins font-light leading-relaxed">
-                Koordynujemy wszystkie etapy prac w jednym harmonogramie,
-                dzięki czemu inwestor ma pełną kontrolę nad zakresem,
-                kosztami i terminami.
-              </p>
+            <article className="flex-1 border border-white/10 bg-[#101214] p-4 md:p-6">
+              <div className="relative overflow-hidden rounded-sm border border-soft-black/15 bg-[#fbfaf8] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.08)] md:p-6">
+                <div
+                  className="absolute inset-0 opacity-[0.28] pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(to bottom, transparent 0px, transparent 31px, rgba(0,0,0,0.06) 31px, rgba(0,0,0,0.06) 32px)",
+                  }}
+                  aria-hidden
+                />
+                <div className="relative border-b border-soft-black/10 pb-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-soft-black/45 ">
+                        RAPORT REALIZACJI
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center rounded-xs border border-green-300 bg-green-100 px-2 py-1 font-mono text-[10px] text-green-800">
+                      ZATWIERDZONO
+                    </span>
+                  </div>
+                </div>
+                <p className="relative mt-3 max-w-xl text-sm text-soft-black/80 font-poppins font-light leading-relaxed">
+                  Koordynujemy wszystkie etapy prac w jednym harmonogramie,
+                  dzięki czemu inwestor ma pełną kontrolę nad zakresem,
+                  kosztami i terminami.
+                </p>
+                <div className="relative mt-4 grid grid-cols-2 gap-2 text-[11px] font-poppins text-soft-black/70">
+                  <div className="rounded-xs border border-soft-black/15 bg-white/80 px-2 py-1.5">
+                    Postęp: <span className="font-medium text-soft-black">82%</span>
+                  </div>
+                  <div className="rounded-xs border border-soft-black/15 bg-white/80 px-2 py-1.5">
+                    Termin: <span className="font-medium text-soft-black">zgodny</span>
+                  </div>
+                </div>
+                <div className="relative mt-3 rounded-xs border border-soft-black/15 bg-white/75">
+                  <div className="flex items-center justify-between border-b border-soft-black/10 px-2 py-1.5 text-[10px] font-mono uppercase tracking-wide text-soft-black/50">
+                    <span>Etap</span>
+                    <span>Status</span>
+                  </div>
+                  <div className="flex items-center justify-between px-2 py-1.5 text-[11px] font-poppins text-soft-black/75">
+                    <span>Montaż tras kablowych</span>
+                    <span className="font-medium">OK</span>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-soft-black/10 px-2 py-1.5 text-[11px] font-poppins text-soft-black/75">
+                    <span>Uruchomienie obwodów</span>
+                    <span className="font-medium">W toku</span>
+                  </div>
+                </div>
+                <div className="relative mt-3 border-t border-dashed border-soft-black/15 pt-2 text-[10px] font-mono uppercase tracking-wide text-soft-black/40">
+                  Inspektor prowadzący: SPS Elektro
+                </div>
+              </div>
             </article>
           </div>
         </div>
