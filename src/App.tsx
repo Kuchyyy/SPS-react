@@ -9,6 +9,7 @@ import Trust from "./components/Trust";
 import Why from "./components/Why";
 import Cta from "./components/Cta";
 import New from "./components/New";
+import Cta2 from "./components/Cta2";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <New />
       <Trust />
       <Done />
+      <Cta2 />
       <Cta />
       <Footer />
     </>

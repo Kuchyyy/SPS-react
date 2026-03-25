@@ -64,8 +64,8 @@ const Trust = () => {
   }, [hasAnimated]);
 
   return (
-    <section className="w-full bg-stone-100 mt-20">
-      <div className="flex flex-col gap-1 mb-8 maxw">
+    <section className="w-full bg-gradient-to-b from-stone-100 to-white mt-20 pb-10 ">
+      <div className="flex flex-col gap-1 mb-8 maxw ">
         <h1 className="text-2xl font-poppins tracking-tight text-soft-black">
           Budujemy Twój sukces
         </h1>
@@ -76,35 +76,35 @@ const Trust = () => {
       </div>
       <div
         ref={containerRef}
-        className="maxw bg-neutral-100 relative overflow-hidden  h-full"
+        className="maxw relative overflow-hidden  h-full "
       >
         <div
           ref={stripesRef}
           className="pointer-events-none absolute inset-y-0 right-0 w-1/2 flex items-end"
         >
-          <div className="h-0 flex-1 bg-gradient-to-t from-blue-900/20 via-blue-900/10 to-transparent" />
-          <div className="h-0 flex-1 bg-gradient-to-t from-blue-900/20 via-blue-900/10 to-transparent" />
-          <div className="h-0 flex-1 bg-gradient-to-t from-blue-900/30 via-blue-900/10 to-transparent" />
-          <div className="h-0 flex-1 bg-gradient-to-t from-blue-900/40 via-blue-900/10 to-transparent" />
-          <div className="h-0 flex-1 bg-gradient-to-t from-blue-900/50 via-blue-900/15 to-transparent" />
+          <div className="h-0 flex-1 bg-gradient-to-t from-blue-800/10 via-blue-800/10 to-transparent" />
+          <div className="h-0 flex-1 bg-gradient-to-t from-blue-800/20 via-blue-800/10 to-transparent" />
+          <div className="h-0 flex-1 bg-gradient-to-t from-blue-800/30 via-blue-800/10 to-transparent" />
+          <div className="h-0 flex-1 bg-gradient-to-t from-blue-800/40 via-blue-800/10 to-transparent" />
+          <div className="h-0 flex-1 bg-gradient-to-t from-blue-800/50 via-blue-800/15 to-transparent" />
         </div>
         <div className="flex flex-col h-full relative z-10 justify-between">
 
 
           <div className="flex flex-col  justify-start gap-6">
-            <div className="border-l-2 border-blue-900 pl-5 min-w-[200px]">
+            <div className="border-l-2 border-blue-800 pl-5 min-w-[200px]">
               <h4 className="text-3xl font-poppins font-light tracking-tight text-soft-black">
                 <CountUp end={1000} duration={3} enableScrollSpy scrollSpyOnce /> +
               </h4>
               <span className="text-sm text-soft-black/60 font-poppins font-light tracking-tight">Klientów</span>
             </div>
-            <div className="border-l-2 border-blue-900 pl-5 min-w-[200px]">
+            <div className="border-l-2 border-blue-800 pl-5 min-w-[200px]">
               <h4 className="text-3xl font-poppins font-light tracking-tight text-soft-black">
                 <CountUp end={20} duration={4} enableScrollSpy scrollSpyOnce /> +
               </h4>
               <span className="text-sm text-soft-black/60 font-poppins font-light tracking-tight">Lat Doświadczenia</span>
             </div>
-            <div className="border-l-2 border-blue-900 pl-5 min-w-[200px]">
+            <div className="border-l-2 border-blue-800 pl-5 min-w-[200px]">
               <h4 className="text-3xl font-poppins font-light tracking-tight text-soft-black">
                 <CountUp end={100} duration={5} enableScrollSpy scrollSpyOnce />%
               </h4>

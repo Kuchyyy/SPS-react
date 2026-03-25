@@ -68,7 +68,7 @@ const Navbar = () => {
   return (
     <nav
       aria-label="Nawigacja główna"
-      className={`fixed top-0 left-0 z-50 w-full border-b border-black/20 bg-neutral-100 shadow-sm transition-transform duration-300 ease-out ${fixedSlideIn ? "translate-y-0" : "-translate-y-full"
+      className={`fixed top-0 left-0 z-50 w-full border-b border-black/20 bg-white  transition-transform duration-300 ease-out ${fixedSlideIn ? "translate-y-0" : "-translate-y-full"
         }`}
     >
       <div className="maxw flex items-center justify-between py-3">
@@ -81,7 +81,7 @@ const Navbar = () => {
         </a>
         <a
           href="#kontakt"
-          className="bg-blue-900 px-3 py-2 text-xs text-white transition hover:bg-[#005494] md:px-5 md:py-3 md:text-sm font-poppins"
+          className="bg-neutral-100 border border-soft-black/10 rounded-xs px-5 py-3 text-xs text-soft-black/90 transition hover:text-soft-black md:px-5 md:py-3 md:text-sm font-poppins"
         >
           <span className="md:hidden">Porozmawiajmy</span>
           <span className="hidden md:inline">Porozmawiajmy o projekcie</span>

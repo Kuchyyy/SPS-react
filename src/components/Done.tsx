@@ -26,7 +26,7 @@ const Done = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section id="realizacje" className="w-full bg-stone-100 py-20">
+    <section id="realizacje" className="w-full bg-white pb-20 pt-10">
       <div className="maxw pt-10">
         <div className="flex flex-col gap-1 mb-6">
           <div className="flex items-center gap-4">
@@ -50,7 +50,7 @@ const Done = () => {
           {projects.map((p, i) => (
             <div
               key={i}
-              className="shrink-0 w-[300px] lg:w-auto  overflow-hidden"
+              className="shrink-0 w-[340px] lg:w-auto  overflow-hidden"
             >
               <div className="relative aspect-[3/4] w-full  bg-neutral-200 overflow-hidden flex items-center justify-center">
                 <img
@@ -83,7 +83,7 @@ const Done = () => {
           {projects.map((p, i) => (
             <div
               key={i}
-              className="shrink-0 w-[300px] lg:w-auto overflow-hidden"
+              className="shrink-0 w-[340px] lg:w-auto overflow-hidden"
             >
               <div className="relative aspect-[3/4] w-full bg-neutral-200 overflow-hidden flex items-center justify-center">
                 <img

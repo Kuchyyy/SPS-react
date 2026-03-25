@@ -1,10 +1,27 @@
 const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
-  const blueColor = "#00629C";
   const whiteColor = "#ffffff";
 
-  const getBottomFill = () => variant === "bottom" ? blueColor : whiteColor;
-  const getMiddleFill = () => variant === "middle" ? blueColor : whiteColor;
-  const getTopFill = () => variant === "top" ? blueColor : whiteColor;
+
+  const grayTop = "oklch(85% 0.01 260)";
+  const grayLeft = "oklch(78% 0.01 260)";
+  const grayRight = "oklch(72% 0.01 260)";
+
+  const bottomTopFill = () =>
+    variant === "bottom" ? grayTop : whiteColor;
+  const bottomLeftFill = () =>
+    variant === "bottom" ? grayLeft : whiteColor;
+  const bottomRightFill = () =>
+    variant === "bottom" ? grayRight : whiteColor;
+
+  const middleTopFill = () =>
+    variant === "middle" ? grayTop : whiteColor;
+  const middleLeftFill = () =>
+    variant === "middle" ? grayLeft : whiteColor;
+  const middleRightFill = () =>
+    variant === "middle" ? grayRight : whiteColor;
+
+  const topLeftFill = () => (variant === "top" ? grayLeft : whiteColor);
+  const topRightFill = () => (variant === "top" ? grayRight : whiteColor);
 
   return (
     <svg
@@ -15,21 +32,21 @@ const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill={getBottomFill()}
+        fill={bottomTopFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M 150 186 L 87 205 L 150 224 L 213 205 Z"
       />
       <path
-        fill={getBottomFill()}
+        fill={bottomLeftFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M 87 205 L 60 251 L 150 278 L 150 224 Z"
       />
       <path
-        fill={getBottomFill()}
+        fill={bottomRightFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
@@ -37,21 +54,21 @@ const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
       />
 
       <path
-        fill={getMiddleFill()}
+        fill={middleTopFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M 150 139 L 119 149 L 150 158 L 181 149 Z"
       />
       <path
-        fill={getMiddleFill()}
+        fill={middleLeftFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M 119 149 L 92 195 L 150 212 L 150 158 Z"
       />
       <path
-        fill={getMiddleFill()}
+        fill={middleRightFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
@@ -59,14 +76,14 @@ const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
       />
 
       <path
-        fill={getTopFill()}
+        fill={topLeftFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
         d="M 150 92 L 123 138 L 150 146 Z"
       />
       <path
-        fill={getTopFill()}
+        fill={topRightFill()}
         stroke="#111"
         strokeWidth="1.5"
         strokeLinejoin="round"
@@ -113,13 +130,13 @@ const Offer = () => {
       </div>
 
       <div className="w-full">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3  lg:overflow-visible">
           {tabs.map((tab, index) => (
             <div
               key={index}
-              className="shrink-0 w-[300px] lg:w-auto rounded-sm overflow-hidden"
+              className="shrink-0 w-[340px] lg:w-auto overflow-hidden"
             >
-              <div className="relative aspect-[3/4] w-full rounded-sm bg-neutral-200 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[3/4] w-full  bg-neutral-200 overflow-hidden flex items-center justify-center">
                 <OfferSVG variant={index === 0 ? "bottom" : index === 1 ? "middle" : "top"} />
               </div>
 

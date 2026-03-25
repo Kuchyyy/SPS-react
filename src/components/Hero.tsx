@@ -1,4 +1,5 @@
 import React from "react"
+import { motion } from "framer-motion"
 import AutoScroll from "embla-carousel-auto-scroll"
 import {
   Carousel,
@@ -95,7 +96,7 @@ const HeroTechnologiesStrip = ({ items }: { items: HeroTechnology[] }) => {
             align: "start",
           }}
           plugins={[autoScroll.current]}
-          className="w-full max-w-[1000px] mask-x-from-75% mask-x-to-95%"
+          className="w-full max-w-[1000px] mask-x-from-95% mask-x-to-100%"
         >
           <CarouselContent className="items-center">
             {[...items, ...items].map((tech, index) => (
@@ -164,36 +165,110 @@ const Hero = () => {
         <HeroTechnologiesStrip items={HERO_TECHNOLOGIES} />
 
         <div className="mt-12 flex flex-col gap-4 md:flex-row">
-          <article className="overflow-hidden border border-soft-black/10 bg-white md:w-[42%] md:shrink-0 md:self-stretch">
+          <article className="relative overflow-hidden border border-soft-black/10 bg-white md:w-[36%] md:shrink-0 md:self-stretch">
             <img
               src="/photos/hero.png"
               alt="Realizacja SPS Elektro"
               className="h-full w-full object-cover object-center"
               loading="lazy"
             />
+            <div
+              className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-black/25 to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-[52%] bg-linear-to-r from-black/55 via-black/20 to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-[35%] bg-linear-to-r from-[#005494]/35 via-[#005494]/10 to-transparent mix-blend-screen"
+              aria-hidden
+            />
+            <blockquote className="absolute inset-x-0 bottom-0 z-10 p-4 pb-5 md:p-6">
+              <p className="max-w-[24rem] text-left text-base font-poppins font-light italic leading-snug tracking-tight text-white md:text-lg">
+                <span
+                  className="font-serif text-2xl leading-none text-white/90 not-italic md:text-3xl"
+                  aria-hidden
+                >
+                  &ldquo;
+                </span>
+                Zacznijmy współpracować i zobacz, <br /> że naprawdę warto
+                <span
+                  className="font-serif text-2xl leading-none text-white/90 not-italic md:text-3xl"
+                  aria-hidden
+                >
+                  &rdquo;
+                </span>
+              </p>
+            </blockquote>
           </article>
 
           <div className="flex flex-1 flex-col gap-4">
-            <article className="relative flex flex-1  justify-center border border-white/10 bg-[url('/photos/bg2.png')] p-5 md:p-6 overflow-hidden max-h-[420px] md:min-h-[360px]">
-              <div className="absolute  z-20 mx-auto max-w-md space-y-2 text-xs font-poppins uppercase tracking-wide text-black/70 inset-x-6  top-1/3">
-                <div className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black">
+            <article className="relative flex flex-1 justify-center border border-white/10 bg-[url('/photos/bg2.png')] p-5 md:p-6 overflow-hidden max-h-[420px] md:min-h-[360px]">
+              <motion.div
+                className="absolute z-20 mx-auto max-w-md space-y-2 text-xs font-poppins uppercase tracking-wide text-black/70 inset-x-6 top-1/3"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.6 }}
+                variants={{
+                  hidden: {},
+                  show: {
+                    transition: { staggerChildren: 0.18, delayChildren: 0.05 },
+                  },
+                }}
+              >
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black"
+                >
                   <span>1. Start prac</span>
                   <span className="font-medium border border-green-300 rounded-xs px-2 py-1 bg-green-100">OK</span>
-                </div>
-                <div className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black">
+                </motion.div>
+
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black"
+                >
                   <span>2. Przegląd etapu</span>
                   <span className="font-medium border border-green-300 rounded-xs px-2 py-1 bg-green-100">OK</span>
-                </div>
-                <div className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black">
+                </motion.div>
+
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="flex items-center justify-between rounded-xs bg-white px-3 py-2 border border-black"
+                >
                   <span>3. Montaż instalacji</span>
                   <span className="font-medium border border-green-300 rounded-xs px-2 py-1 bg-green-100">OK</span>
-                </div>
+                </motion.div>
 
-                <div className="flex items-center justify-between rounded-xs bg-black px-3 py-2 text-white/85">
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="flex items-center justify-between rounded-xs bg-black px-3 py-2 text-white/85"
+                >
                   <span>4. Finalizacja</span>
-                  <span className="font-medium">W toku</span>
-                </div>
-              </div>
+                  <span className="inline-flex items-center gap-1 rounded-2xl px-1 py-1.5">
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60 [animation-duration:900ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60 [animation-delay:120ms] [animation-duration:900ms]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-60 [animation-delay:240ms] [animation-duration:900ms]" />
+                  </span>
+                </motion.div>
+              </motion.div>
 
               <div className="flex w-full items-end justify-center md:w-[280px] md:justify-start translate-y-70 md:-translate-x-18 -translate-x-2">
                 <IphoneMockup
@@ -205,7 +280,7 @@ const Hero = () => {
               </div>
             </article>
 
-            <article className="flex-1 border border-white/10 bg-[#101214] p-4 md:p-6">
+            <article className="flex-1 border border-white/10 bg-[#101214] p-4 md:p-6 flex flex-col justify-center">
               <div className="relative overflow-hidden rounded-sm border border-soft-black/15 bg-[#fbfaf8] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.08)] md:p-6">
                 <div
                   className="absolute inset-0 opacity-[0.28] pointer-events-none"
@@ -227,7 +302,7 @@ const Hero = () => {
                     </span>
                   </div>
                 </div>
-                <p className="relative mt-3 max-w-xl text-sm text-soft-black/80 font-poppins font-light leading-relaxed">
+                <p className="relative mt-3 max-w-xl text-xs text-soft-black/80 font-poppins font-light leading-relaxed">
                   Koordynujemy wszystkie etapy prac w jednym harmonogramie,
                   dzięki czemu inwestor ma pełną kontrolę nad zakresem,
                   kosztami i terminami.

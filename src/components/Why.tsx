@@ -44,16 +44,16 @@ const Why = () => {
             {reasons.map((item, index) => {
               const isActive = index === 0;
               return (
-                <div key={index} className="relative py-10 p-6 pl-0 shrink-0 w-[280px] md:w-auto">
-                  <div className="absolute left-0 top-3 -translate-y-1/2 flex items-center justify-center z-20">
+                <div key={index} className="relative py-10 p-6 pl-2 shrink-0 w-[280px] md:w-auto">
+                  <div className="absolute left-0.5 top-3 -translate-y-1/2 flex items-center justify-center z-20">
                     <div
                       className={`w-5 h-5 rounded-full ${isActive
-                        ? "bg-blue-900 opacity-30"
-                        : "bg-gray-400 opacity-30"
+                        ? "bg-blue-900/30 animate-pulse-sps"
+                        : "bg-gray-400 opacity-30 "
                         }`}
                     ></div>
                     <div
-                      className={`absolute w-2 h-2 rounded-full ${isActive
+                      className={`absolute w-1.75 h-1.75 rounded-full ${isActive
                         ? "bg-blue-900"
                         : "bg-gray-400"
                         }`}

@@ -3,10 +3,10 @@ const Footer = () => {
   return (
     <>
       <footer className="w-full">
-        <div className="w-full bg-neutral-100 min-h-100">
+        <div className="w-full bg-white min-h-120">
           <div className="maxw py-16 md:py-20">
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-10 md:gap-8">
-              <div className="md:col-span-3">
+            <div className="flex flex-col gap-4">
+              <div>
                 <img
                   src="/photos/logosps.png"
                   alt="SPS Elektro"
@@ -18,89 +18,91 @@ const Footer = () => {
                 </p>
               </div>
 
-              <div className="md:col-span-1">
-                <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
-                  Przejścia
-                </h4>
-                <nav>
-                  <ul className="space-y-3 text-sm text-soft-black/60 font-poppins font-light">
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 border-t border-dashed border-soft-black/20 pt-8">
+                <div>
+                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
+                    Strona
+                  </h4>
+                  <nav >
+                    <ul className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
+                      <li>
+                        <a href="#oferta" className="hover:text-soft-black transition">
+                          Oferta
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#realizacje" className="hover:text-soft-black transition">
+                          Realizacje
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#kontakt" className="hover:text-soft-black transition">
+                          Kontakt
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#faq" className="hover:text-soft-black transition">
+                          FAQ
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+
+
+                <div>
+                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase flex items-center gap-2">
+
+                    Dokumenty
+                  </h4>
+                  <ul className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
                     <li>
-                      <a href="#oferta" className="hover:text-soft-black transition">
-                        Oferta
+                      <a
+                        href="#"
+                        className="inline-flex items-center gap-2 hover:text-soft-black transition"
+                      >
+                        <span>Certyfikaty</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px]  tracking-wide text-soft-black/60">
+                          wkrótce
+                        </span>
                       </a>
                     </li>
                     <li>
-                      <a href="#realizacje" className="hover:text-soft-black transition">
-                        Realizacje
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#kontakt" className="hover:text-soft-black transition">
-                        Kontakt
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#faq" className="hover:text-soft-black transition">
-                        FAQ
+                      <a
+                        href="#"
+                        className="inline-flex items-center gap-2 hover:text-soft-black transition"
+                      >
+                        <span>Dokumenty <br className="hidden md:block" /> firmowe</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px] tracking-wide text-soft-black/60 flex-shrink-0">
+                          wkrótce
+                        </span>
                       </a>
                     </li>
                   </ul>
-                </nav>
-              </div>
+                </div>
 
+                <div>
+                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
+                    Firma
+                  </h4>
+                  <div className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
+                    <div className="flex items-start gap-2">
 
+                      <span>ul. Harcerska 21, 52-404 Wrocław</span>
+                    </div>
+                    <div className="flex items-start gap-2">
 
-              <div className="md:col-span-1">
-                <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase flex items-center gap-2">
+                      <a href="tel:+48666011919" className="hover:text-soft-black transition">
+                        +48 666 011 919
+                      </a>
+                    </div>
+                    <div className="flex items-start gap-2">
 
-                  Dokumenty
-                </h4>
-                <ul className="space-y-3 text-sm text-soft-black/60 font-poppins font-light">
-                  <li>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 hover:text-soft-black transition"
-                    >
-                      <span>Certyfikaty</span>
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px]  tracking-wide text-soft-black/60">
-                        wkrótce
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 hover:text-soft-black transition"
-                    >
-                      <span>Dokumenty <br className="hidden md:block" /> firmowe</span>
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px] tracking-wide text-soft-black/60 flex-shrink-0">
-                        wkrótce
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="md:col-span-1">
-                <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
-                  Firma
-                </h4>
-                <div className="space-y-3 text-sm text-soft-black/60 font-poppins font-light">
-                  <div className="flex items-start gap-2">
-
-                    <span>ul. Harcerska 21, 52-404 Wrocław</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-
-                    <a href="tel:+48666011919" className="hover:text-soft-black transition">
-                      +48 666 011 919
-                    </a>
-                  </div>
-                  <div className="flex items-start gap-2">
-
-                    <a href="mailto:biuro@spselektro.pl" className="hover:text-soft-black transition">
-                      biuro@spselektro.pl
-                    </a>
+                      <a href="mailto:biuro@spselektro.pl" className="hover:text-soft-black transition">
+                        biuro@spselektro.pl
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -109,8 +111,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full bg-neutral-100">
-          <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-soft-black/60 font-poppins border-t border-soft-black/20">
+        <div className="w-full bg-white">
+          <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-soft-black/60 font-poppins border-t border-dashed border-soft-black/20">
             <div className="flex items-center gap-3">
               <a
                 href="https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"

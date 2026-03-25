@@ -43,7 +43,7 @@ const New = () => {
                                 href={LINKEDIN_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm text-white/60 font-poppins font-light tracking-tight transition hover:text-white border border-white/20 px-6 py-3"
+                                className="inline-flex items-center gap-2 text-sm text-white/90 font-poppins font-light tracking-tight transition hover:text-white border border-white/50 px-6 py-3"
                                 aria-label="Profil SPS Elektro na LinkedIn"
                             >
 
