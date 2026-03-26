@@ -1,3 +1,5 @@
+import Cross from "../facilities/Cross";
+
 const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
   const whiteColor = "#ffffff";
 
@@ -110,7 +112,7 @@ const tabs = [
 
 const Offer = () => {
   return (
-    <section id="oferta" className="w-full bg-stone-100">
+    <section id="oferta" className="w-full bg-white">
       <div className="maxw  pt-10">
         <div className="flex flex-col gap-1 mb-6">
           <div className="flex items-center gap-4">
@@ -130,13 +132,18 @@ const Offer = () => {
       </div>
 
       <div className="w-full">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3  lg:overflow-visible">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide py-2 px-4 md:px-0 lg:maxw lg:grid lg:grid-cols-3  lg:overflow-visible">
           {tabs.map((tab, index) => (
             <div
               key={index}
-              className="shrink-0 w-[340px] lg:w-auto overflow-hidden"
+              className="shrink-0 w-[340px] lg:w-auto "
             >
-              <div className="relative aspect-[3/4] w-full  bg-neutral-200 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[3/4] w-full  bg-grej  flex items-center justify-center">
+                <Cross corner="top-left" armLengths={{ bottom: 20, right: 20, top: 5, left: 5 }} />
+                <Cross corner="top-right" armLengths={{ bottom: 20, left: 20, top: 5, right: 5 }} />
+                <Cross corner="bottom-left" armLengths={{ top: 20, right: 20, bottom: 5, left: 5 }} />
+                <Cross corner="bottom-right" armLengths={{ top: 20, left: 20, bottom: 5, right: 5 }} />
+
                 <OfferSVG variant={index === 0 ? "bottom" : index === 1 ? "middle" : "top"} />
               </div>
 

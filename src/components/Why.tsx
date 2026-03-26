@@ -27,7 +27,7 @@ const reasons = [
 
 const Why = () => {
   return (
-    <section className="w-full bg-stone-100 py-20">
+    <section className="w-full bg-white py-20">
       <div className="maxw">
         <div className="flex flex-col gap-1 mb-8">
 

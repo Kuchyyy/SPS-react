@@ -10,7 +10,7 @@ const Cta = () => {
             />
 
             <div className="relative z-10 flex w-full flex-1 flex-col justify-between px-5 md:px-0 pt-10 md:maxw">
-                <p className="text-xs font-poppins tracking-wide uppercase text-white">
+                <p className="text-xs font-geist-mono tracking-wide uppercase text-white">
                     Współpraca
                 </p>
 

@@ -1,5 +1,5 @@
 import React from "react"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import AutoScroll from "embla-carousel-auto-scroll"
 import {
   Carousel,
@@ -81,8 +81,8 @@ const HeroTechnologiesStrip = ({ items }: { items: HeroTechnology[] }) => {
       aria-label="Technologie i partnerzy"
     >
       <div className="shrink-0 text-left lg:max-w-[11rem] lg:border-r lg:border-soft-black/15 lg:pr-10">
-        <p className="text-[11px] font-poppins uppercase leading-snug  text-soft-black/60 sm:text-xs">
-          Technologie <br /> najwyższej jakości
+        <p className="text-[11px] font-geist-mono text-nowrap tracking-tight uppercase leading-snug  text-soft-black/60 sm:text-xs">
+          Technologie <br className="hidden md:block" /> najwyższej jakości
         </p>
       </div>
 
@@ -133,10 +133,54 @@ const HeroTechnologiesStrip = ({ items }: { items: HeroTechnology[] }) => {
 const Hero = () => {
   const LINKEDIN_URL =
     "https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"
+  const stepsRef = React.useRef<HTMLDivElement | null>(null)
+  const stepsInView = useInView(stepsRef, {
+    once: true,
+
+    margin: "-50% 0px -50% 0px",
+  })
 
   return (
-    <section id="hero" className="w-screen bg-neutral-100">
+    <section id="hero" className="w-screen bg-grej">
       <div className="maxw flex flex-col pb-12 pt-30">
+        <div className="flex items-center gap-2 mb-2">
+          <div className=" inline-flex w-fit items-center gap-3 rounded-sm bg-blue-800 px-3 py-1 text-xs font-poppins  text-white/95">
+            <span className="font-geist-mono">Zyskaj</span>
+
+          </div>
+          <p className="text-soft-black/70 text-xs font-geist-mono text-nowrap">przewagę na rynku</p>
+          <svg
+            aria-hidden
+            viewBox="0 0 220 32"
+            className="h-4 w-24 -rotate-1 text-blue-800 md:w-30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <motion.path
+              d="M4 16 C22 13, 36 19, 50 16 C62 13, 74 18, 86 16 C92 15, 98 16, 102 16"
+              stroke="currentColor"
+              strokeWidth="4.1"
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0.2 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+              transition={{ duration: 0.55, ease: "easeOut", delay: 0 }}
+            />
+            <motion.path
+              d="M102 7 C108 11, 114 12, 118 16 C114 20, 108 21, 101 26"
+              stroke="currentColor"
+              strokeWidth="4.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              whileInView={{ pathLength: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+              transition={{ duration: 0.35, delay: 0.45, ease: "easeOut" }}
+            />
+
+          </svg>
+
+        </div>
         <h1 className="max-w-3xl text-3xl font-poppins tracking-tight leading-tight text-soft-black md:text-4xl">
           Instalacje elektryczne i <br /> teletechnika dla firm
         </h1>
@@ -206,10 +250,10 @@ const Hero = () => {
           <div className="flex flex-1 flex-col gap-4">
             <article className="relative flex flex-1 justify-center border border-white/10 bg-[url('/photos/bg2.png')] p-5 md:p-6 overflow-hidden max-h-[420px] md:min-h-[360px]">
               <motion.div
+                ref={stepsRef}
                 className="absolute z-20 mx-auto max-w-md space-y-2 text-xs font-poppins uppercase tracking-wide text-black/70 inset-x-6 top-1/3"
                 initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.6 }}
+                animate={stepsInView ? "show" : "hidden"}
                 variants={{
                   hidden: {},
                   show: {

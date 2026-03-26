@@ -60,16 +60,20 @@ html {
 
 
 
+
 @theme {
 
   --font-poppins: 'Poppins', sans-serif;
   --font-host-grotesk: "Host Grotesk", sans-serif;
+  --font-geist: "Geist", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
 }
 
 @theme inline {
   --color-blue-900: #00629C;
   --color-soft-black: #1a1a1a;
   --color-black1: #101113;
+  --color-grej: #F5F5F3;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

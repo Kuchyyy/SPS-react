@@ -7,14 +7,19 @@ interface CrossProps {
     length?: number;
     /** Grubość kresek (px) */
     strokeWidth?: number;
-    /** Kolor kropki (środka) */
+    /** Kolor kresek (domyślny) */
     color?: string;
     /** Kolor kresek ramion (jeśli nie podany, używa `color`) */
     strokeColor?: string;
-    /** Promień kropki na środku (px), 0 = bez kropki */
-    dotRadius?: number;
     /** Opcjonalna klasa na wrapper */
     className?: string;
+    /** Długości ramion niezależnie dla każdej strony (px) */
+    armLengths?: {
+        top?: number;
+        right?: number;
+        bottom?: number;
+        left?: number;
+    };
 }
 
 const CORNER_STYLE: Record<
@@ -31,17 +36,24 @@ const Cross = ({
     corner,
     length = 10,
     strokeWidth = 1,
-    color = "currentColor",
+    color = "oklch(70.8% 0 0)",
     strokeColor,
-    dotRadius = 1.5,
     className = "",
+    armLengths,
 }: CrossProps) => {
     const pos = CORNER_STYLE[corner];
     const sw = strokeWidth;
     const strokeCol = strokeColor ?? color;
-    const size = length * 2 + sw * 2;
-    const center = length + sw;
-    const gap = dotRadius > 0 ? dotRadius + sw * 2 : sw * 2;
+    const leftLen = armLengths?.left ?? length;
+    const rightLen = armLengths?.right ?? length;
+    const topLen = armLengths?.top ?? length;
+    const bottomLen = armLengths?.bottom ?? length;
+
+    const sizeX = leftLen + rightLen + sw * 2;
+    const sizeY = topLen + bottomLen + sw * 2;
+    const size = Math.max(sizeX, sizeY);
+    const center = size / 2;
+    const gap = 0;
 
 
     const translate =
@@ -55,7 +67,7 @@ const Cross = ({
 
     return (
         <div
-            className={`absolute pointer-events-none bg-neutral-100 overflow-hidden ${className}`}
+            className={`absolute pointer-events-none  overflow-hidden ${className}`}
             style={{
                 width: size,
                 height: size,
@@ -67,7 +79,7 @@ const Cross = ({
             <svg width={size} height={size} className="overflow-hidden text-black">
                 {/* Lewo */}
                 <line
-                    x1={center - length}
+                    x1={center - leftLen}
                     y1={center}
                     x2={center - gap}
                     y2={center}
@@ -78,7 +90,7 @@ const Cross = ({
                 <line
                     x1={center + gap}
                     y1={center}
-                    x2={center + length}
+                    x2={center + rightLen}
                     y2={center}
                     stroke={strokeCol}
                     strokeWidth={strokeWidth}
@@ -86,7 +98,7 @@ const Cross = ({
                 {/* Góra */}
                 <line
                     x1={center}
-                    y1={center - length}
+                    y1={center - topLen}
                     x2={center}
                     y2={center - gap}
                     stroke={strokeCol}
@@ -97,13 +109,10 @@ const Cross = ({
                     x1={center}
                     y1={center + gap}
                     x2={center}
-                    y2={center + length}
+                    y2={center + bottomLen}
                     stroke={strokeCol}
                     strokeWidth={strokeWidth}
                 />
-                {dotRadius > 0 && (
-                    <circle cx={center} cy={center} r={dotRadius} fill={color} />
-                )}
             </svg>
         </div>
     );

@@ -16,7 +16,7 @@ const New = () => {
 
 
             <div className="relative z-10 flex w-full flex-1 flex-col justify-between pt-10 md:maxw">
-                <p className="text-xs font-robert-medium tracking-wide uppercase text-white maxw md:w-full">
+                <p className="text-xs font-geist-mono tracking-wide uppercase text-white maxw md:w-full">
                     SPSELEKTRO
                 </p>
 
