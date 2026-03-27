@@ -97,14 +97,17 @@ const OfferSVG = ({ variant }: { variant: "bottom" | "middle" | "top" }) => {
 
 const tabs = [
   {
+    id: '1',
     title: "Projektujemy",
     desc: "Tworzymy profesjonalne projekty instalacji, dostosowane do potrzeb i wymagań klientów.",
   },
   {
+    id: '2',
     title: "Wykonujemy",
     desc: "Realizujemy zadania w oparciu o najnowsze technologie, gwarantując solidne wykonanie.",
   },
   {
+    id: '3',
     title: "Serwisujemy",
     desc: "Zapewniamy wsparcie i konserwację, aby Twoje instalacje działały bez zakłóceń.",
   },
@@ -139,10 +142,30 @@ const Offer = () => {
               className="shrink-0 w-[340px] lg:w-auto "
             >
               <div className="relative aspect-[3/4] w-full  bg-grej  flex items-center justify-center">
-                <Cross corner="top-left" armLengths={{ bottom: 20, right: 20, top: 5, left: 5 }} />
-                <Cross corner="top-right" armLengths={{ bottom: 20, left: 20, top: 5, right: 5 }} />
-                <Cross corner="bottom-left" armLengths={{ top: 20, right: 20, bottom: 5, left: 5 }} />
-                <Cross corner="bottom-right" armLengths={{ top: 20, left: 20, bottom: 5, right: 5 }} />
+                {index === 0 && (
+                  <>
+                    <Cross
+                      corner="top-left"
+                      armLengths={{ bottom: 20, right: 20, top: 5, left: 5 }}
+                    />
+                    <Cross
+                      corner="bottom-left"
+                      armLengths={{ top: 20, right: 20, bottom: 5, left: 5 }}
+                    />
+                  </>
+                )}
+                {index === tabs.length - 1 && (
+                  <>
+                    <Cross
+                      corner="top-right"
+                      armLengths={{ bottom: 20, left: 20, top: 5, right: 5 }}
+                    />
+                    <Cross
+                      corner="bottom-right"
+                      armLengths={{ top: 20, left: 20, bottom: 5, right: 5 }}
+                    />
+                  </>
+                )}
 
                 <OfferSVG variant={index === 0 ? "bottom" : index === 1 ? "middle" : "top"} />
               </div>

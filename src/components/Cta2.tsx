@@ -63,7 +63,13 @@ const Cta2 = () => {
                         <img
                             src="/photos/hero2.png"
                             alt="Realizacja SPS Elektro"
-                            className="h-full w-full object-cover object-center"
+                            className="h-full w-full object-cover object-center hidden md:block"
+                            loading="lazy"
+                        />
+                        <img
+                            src="/photos/hero2tel.png"
+                            alt="Realizacja SPS Elektro"
+                            className="h-full w-full object-cover object-center block md:hidden"
                             loading="lazy"
                         />
                         <div
@@ -74,9 +80,9 @@ const Cta2 = () => {
                             className="pointer-events-none absolute inset-y-0 left-0 w-px bg-white/40"
                             aria-hidden
                         />
-                        <blockquote className="absolute left-4 bottom-4 z-20 max-w-[42%] md:left-6 md:bottom-6">
-                            <p className="text-sm font-poppins font-light italic leading-snug tracking-tight text-white md:text-base">
-                                &ldquo;Dostarczamy instalacje, które pracują na wynik Twojej inwestycji.&rdquo;
+                        <blockquote className="absolute left-4 top-4  z-20 md:max-w-[42%] ">
+                            <p className=" font-poppins font-light italic leading-snug tracking-tight text-white text-base">
+                                &ldquo;Dostarczamy instalacje, które pracują <br /> na wynik Twojej inwestycji.&rdquo;
                             </p>
                         </blockquote>
                     </div>
