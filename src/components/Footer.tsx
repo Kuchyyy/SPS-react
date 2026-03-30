@@ -1,143 +1,109 @@
+import { Link } from "react-router-dom"
 
 const Footer = () => {
   return (
-    <>
-      <footer className="w-full">
-        <div className="w-full bg-white min-h-120">
-          <div className="maxw py-16 md:py-20">
-            <div className="flex flex-col gap-4">
-              <div>
-                <img
-                  src="/photos/logosps.png"
-                  alt="SPS Elektro"
-                  className="w-[140px] h-auto object-contain"
-                />
-                <p className="mt-2 text-xs font-poppins text-soft-black/60 leading-relaxed font-light max-w-sm">
-                  Projektujemy i realizujemy instalacje elektryczne oraz rozwiązania dla inwestycji w całej Polsce.
-                  Stawiamy na jakość, terminowość i bezpieczeństwo.
-                </p>
-              </div>
+    <footer className="w-full bg-grej">
+      <div className="maxw py-16 md:py-20">
+        <div className="grid gap-12 border-b border-dashed border-soft-black/20 pb-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
+          <div>
+            <img
+              src="/photos/logosps.png"
+              alt="SPS Elektro"
+              className="h-auto w-[140px] object-contain"
+            />
+            <p className="mt-3 max-w-sm text-xs font-poppins font-light leading-relaxed text-soft-black/60">
+              Projektujemy i realizujemy instalacje elektryczne oraz rozwiazania dla
+              inwestycji w calej Polsce.
+            </p>
 
-              <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8 border-t border-dashed border-soft-black/20 pt-8">
-                <div>
-                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
-                    Strona
-                  </h4>
-                  <nav >
-                    <ul className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
-                      <li>
-                        <a href="#oferta" className="hover:text-soft-black transition">
-                          Oferta
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#realizacje" className="hover:text-soft-black transition">
-                          Realizacje
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#kontakt" className="hover:text-soft-black transition">
-                          Kontakt
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#faq" className="hover:text-soft-black transition">
-                          FAQ
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-
-
-
-                <div>
-                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase flex items-center gap-2">
-
-                    Dokumenty
-                  </h4>
-                  <ul className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-flex items-center gap-2 hover:text-soft-black transition"
-                      >
-                        <span>Certyfikaty</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px]  tracking-wide text-soft-black/60">
-                          wkrótce
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="inline-flex items-center gap-2 hover:text-soft-black transition"
-                      >
-                        <span>Dokumenty <br className="hidden md:block" /> firmowe</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-soft-black/5 text-[10px] tracking-wide text-soft-black/60 flex-shrink-0">
-                          wkrótce
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xs font-robert-medium text-soft-black/50 mb-4 tracking-wide uppercase">
-                    Firma
-                  </h4>
-                  <div className="space-y-3 text-xs text-soft-black/60 font-poppins font-light">
-                    <div className="flex items-start gap-2">
-
-                      <span>ul. Harcerska 21, 52-404 Wrocław</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-
-                      <a href="tel:+48666011919" className="hover:text-soft-black transition">
-                        +48 666 011 919
-                      </a>
-                    </div>
-                    <div className="flex items-start gap-2">
-
-                      <a href="mailto:biuro@spselektro.pl" className="hover:text-soft-black transition">
-                        biuro@spselektro.pl
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+            <nav className="mt-8">
+              <ul className="grid grid-cols-2 gap-y-3 text-sm font-poppins text-soft-black/65 md:flex md:flex-wrap md:gap-6">
+                <li>
+                  <a href="#oferta" className="transition hover:text-soft-black">
+                    Oferta
+                  </a>
+                </li>
+                <li>
+                  <a href="#realizacje" className="transition hover:text-soft-black">
+                    Realizacje
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="transition hover:text-soft-black">
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <Link to="/kontakt" className="transition hover:text-soft-black">
+                    Kontakt
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
-        </div>
 
-        <div className="w-full bg-white">
-          <div className="maxw py-5 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-soft-black/60 font-poppins border-t border-dashed border-soft-black/20">
-            <div className="flex items-center gap-3">
+          <div className="grid gap-7 sm:grid-cols-2">
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-soft-black/40">
+                Telefon
+              </p>
+              <Link
+                to="/kontakt"
+                className="mt-1 block text-sm font-poppins tracking-tight text-soft-black transition hover:text-soft-black/70"
+              >
+                +48 666 011 919
+              </Link>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-soft-black/40">
+                E-mail
+              </p>
+              <a
+                href="mailto:biuro@spselektro.pl"
+                className="mt-1 block text-sm font-poppins tracking-tight text-soft-black transition hover:text-soft-black/70"
+              >
+                biuro@spselektro.pl
+              </a>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-soft-black/40">
+                Adres
+              </p>
+              <p className="mt-1 text-sm font-poppins font-light leading-relaxed text-soft-black/70">
+                ul. Harcerska 21 <br />
+                52-404 Wroclaw
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-soft-black/40">
+                LinkedIn
+              </p>
               <a
                 href="https://www.linkedin.com/company/sps-elektro-sp-z-o-o/?originalSubdomain=pl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex font-poppins font-light text-xs items-end gap-2 hover:text-soft-black transition"
+                className="mt-1 inline-flex items-center gap-2 text-sm font-poppins text-soft-black transition hover:text-soft-black/70"
                 aria-label="LinkedIn"
               >
-                LinkedIn
+                SPS Elektro
 
               </a>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 font-poppins font-light text-xs">
-              <p className="text-center">© 2026 spselektro Wszelkie prawa zastrzeżone.</p>
-              <a href="#" className="hover:text-soft-black transition">
-                Polityka prywatności
-              </a>
-
             </div>
           </div>
         </div>
-      </footer>
-    </>
-  );
-};
+
+        <div className="flex flex-col items-center justify-between gap-2 pt-5 text-xs font-poppins font-light text-soft-black/55 md:flex-row">
+          <p>© 2026 spselektro. Wszelkie prawa zastrzezone.</p>
+          <a href="#" className="transition hover:text-soft-black">
+            Polityka prywatnosci
+          </a>
+        </div>
+      </div>
+    </footer>
+  )
+}
 
 export default Footer;

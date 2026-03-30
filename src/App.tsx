@@ -1,33 +1,13 @@
-
-import Done from "./components/Done";
-
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import Offer from "./components/Offer";
-import Trust from "./components/Trust";
-import Why from "./components/Why";
-import Cta from "./components/Cta";
-import New from "./components/New";
-import Cta2 from "./components/Cta2";
-
+import { Routes, Route } from "react-router-dom"
+import Main from "./pages/Main"
+import ContactPage from "./pages/contact/ContactPage"
 
 function App() {
-
-
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <Offer />
-      <Why />
-      <New />
-      <Trust />
-      <Done />
-      <Cta2 />
-      <Cta />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/kontakt" element={<ContactPage />} />
+    </Routes>
   )
 }
 

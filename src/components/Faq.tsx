@@ -47,7 +47,7 @@ export default function Faq() {
 
 
   return (
-    <section id="faq" className="w-full bg-stone-100">
+    <section id="faq" className="w-full bg-grej border-b border-black/20">
       <div className="w-full border-y border-black/20">
         <div className="maxw border-x border-black/20 py-8">
 

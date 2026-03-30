@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const SECTION_IMAGE = "/photos/sps.jpeg"
 
 const Cta = () => {
@@ -27,12 +29,12 @@ const Cta = () => {
                             </div>
                         </div>
                         <div className="flex flex-wrap items-center gap-6 pb-10">
-                            <button
-                                type="button"
+                            <Link
+                                to="/kontakt"
                                 className="inline-flex items-center justify-center px-6 py-3 bg-white text-black text-sm font-poppins border border-white/20 transition hover:cursor-pointer hover:bg-white/95"
                             >
                                 Porozmawiajmy o projekcie
-                            </button>
+                            </Link>
                         </div>
                     </div>
 

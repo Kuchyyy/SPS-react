@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
 import AutoScroll from "embla-carousel-auto-scroll"
 import {
@@ -190,12 +191,12 @@ const Hero = () => {
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href="tel:+48666011919"
+          <Link
+            to="/kontakt"
             className="inline-flex items-center justify-center bg-white px-6 py-3 text-sm font-poppins text-black border border-soft-black/15 transition hover:cursor-pointer hover:bg-white/95"
           >
             Porozmawiajmy o projekcie
-          </a>
+          </Link>
           <a
             href={LINKEDIN_URL}
             target="_blank"
