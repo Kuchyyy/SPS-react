@@ -97,9 +97,9 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between gap-2 pt-5 text-xs font-poppins font-light text-soft-black/55 md:flex-row">
           <p>© 2026 spselektro. Wszelkie prawa zastrzezone.</p>
-          <a href="#" className="transition hover:text-soft-black">
+          <Link to="/polityka-prywatnosci" className="transition hover:text-soft-black">
             Polityka prywatnosci
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

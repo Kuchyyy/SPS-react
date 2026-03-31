@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import Cross from "../facilities/Cross";
+
 
 
 const faqs = [
@@ -66,9 +66,6 @@ export default function Faq() {
 
       </div>
       <div className="maxw border-x border-black/20 py-8 relative">
-
-        <Cross corner="top-left" strokeColor="stone-100" />
-        <Cross corner="top-right" strokeColor="stone-100" />
 
         <div className="">
           {faqs.map((faq, index) => {

@@ -1,6 +1,49 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import type { FormEvent } from "react"
 
 const ContactContent = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [subject, setSubject] = useState("")
+  const [message, setMessage] = useState("")
+  const [acceptedPolicy, setAcceptedPolicy] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState("")
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setFeedback("")
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, phone, subject, message }),
+      })
+
+      if (!response.ok) {
+        setFeedback("Nie udalo sie wyslac wiadomosci. Sprobuj ponownie.")
+        return
+      }
+
+      setFeedback("Wiadomosc wyslana. Dziekujemy.")
+      setName("")
+      setEmail("")
+      setPhone("")
+      setSubject("")
+      setMessage("")
+    } catch {
+      setFeedback("Nie udalo sie wyslac wiadomosci. Sprobuj ponownie.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-grej">
       <nav className="w-full border-b border-soft-black/10 bg-grej">
@@ -36,7 +79,7 @@ const ContactContent = () => {
         </div>
 
         <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
-          <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1.5">
               <label htmlFor="name" className="text-xs font-poppins text-soft-black/60">
                 Imie i nazwisko
@@ -44,6 +87,9 @@ const ContactContent = () => {
               <input
                 id="name"
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
                 className="border border-soft-black/15 bg-white px-4 py-3 text-sm font-poppins text-soft-black outline-none transition focus:border-soft-black/40"
                 placeholder="Jan Kowalski"
               />
@@ -56,6 +102,9 @@ const ContactContent = () => {
               <input
                 id="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="border border-soft-black/15 bg-white px-4 py-3 text-sm font-poppins text-soft-black outline-none transition focus:border-soft-black/40"
                 placeholder="jan@firma.pl"
               />
@@ -68,8 +117,26 @@ const ContactContent = () => {
               <input
                 id="phone"
                 type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
                 className="border border-soft-black/15 bg-white px-4 py-3 text-sm font-poppins text-soft-black outline-none transition focus:border-soft-black/40"
                 placeholder="+48 000 000 000"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="subject" className="text-xs font-poppins text-soft-black/60">
+                Temat
+              </label>
+              <input
+                id="subject"
+                type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                required
+                className="border border-soft-black/15 bg-white px-4 py-3 text-sm font-poppins text-soft-black outline-none transition focus:border-soft-black/40"
+                placeholder="Czego dotyczy zapytanie?"
               />
             </div>
 
@@ -80,17 +147,34 @@ const ContactContent = () => {
               <textarea
                 id="message"
                 rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
                 className="resize-none border border-soft-black/15 bg-white px-4 py-3 text-sm font-poppins text-soft-black outline-none transition focus:border-soft-black/40"
                 placeholder="Opisz swoj projekt..."
               />
             </div>
 
+            <label className="mt-1 inline-flex items-start gap-2 text-xs font-poppins text-soft-black/60">
+              <input
+                type="checkbox"
+                checked={acceptedPolicy}
+                onChange={(e) => setAcceptedPolicy(e.target.checked)}
+                required
+                className="mt-0.5 h-4 w-4 border border-soft-black/25 accent-soft-black"
+              />
+              <span className="text-sm ">Akceptuje regulamin przetwarzania danych.</span>
+            </label>
             <button
               type="submit"
-              className="mt-2 w-fit bg-soft-black px-8 py-3 text-sm font-poppins text-white transition hover:bg-soft-black/90"
+              disabled={isSubmitting || !acceptedPolicy}
+              className="mt-2 w-fit bg-soft-black px-8 py-3 text-sm font-poppins text-white transition hover:bg-soft-black/90 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Wyslij wiadomosc
+              {isSubmitting ? "Wysylanie..." : "Wyslij wiadomosc"}
             </button>
+            {feedback ? (
+              <p className="text-xs font-poppins text-soft-black/60">{feedback}</p>
+            ) : null}
           </form>
 
           <div className="flex flex-col gap-8">
